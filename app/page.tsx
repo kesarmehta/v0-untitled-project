@@ -293,9 +293,9 @@ export default function Home() {
                 title: "DIY Toolkit",
                 description: "My Templates and guides",
                 features: [
-                  "Cold email templates\n(including my cold mail 1. which got me into MIT, 2. Got me interviews at big tech 3. Got me on a call with a VC CEO with over $1Bn USD capital)",
+                  "Cold email templates (Including the cold email that: [1] got me into MIT, [2] landed big tech interviews, [3] secured a call with a $1B+ VC CEO.)",
                   "LinkedIn optimization guide",
-                  "Resume ATS optimization guide (including the resume that got me interviews at Google, Microsoft, Adobe, IBM",
+                  "Resume ATS optimization guide (including my resume that got me interviews at Google, Microsoft, Adobe, and many more)",
                 ],
                 price: "$5+",
                 cta: "Get Templates & Guides",
@@ -304,25 +304,37 @@ export default function Home() {
               },
               {
                 title: "Community Pass",
-                description: "Join our growth-focused community",
-                features: ["13+ Hours of Video Guides", "Weekly LIVE Community Calls", "Private Community"],
-                price: "Coming Soon",
+                description: "Join Karan's community",
+                features: [
+                  "Everything in DIY for FREE",
+                  "Monthly private 1:1s with Karan for personalized guidance",
+                  "Private community",
+                  "13+ Hours of personal Video content to help you crack bigtech and top unis",
+                  "1:1 Chat with Karan (replies daily)",
+                  "2 Weekly LIVE Community Calls",
+                  "1:1 resume reviews with Karan",
+                  "1:1 cold-email reviews with Karan",
+                ],
+                price: "$49",
                 cta: "Join the Community",
                 popular: true,
                 link: "https://whop.com",
               },
               {
-                title: "VIP Coaching",
+                title: "Private Pass",
                 description: "Personalized 1:1 guidance",
                 features: [
+                  "Everything in DIY for FREE",
+                  "Everything in Community pass for FREE",
                   "2 Weekly Private Calls with Karan",
                   "2 Weekly Coaching Calls",
-                  "Exclusive Templates & Guides",
+                  "Interview tips and prep",
+                  "All document review (resume, mails, SOPs, research statements, presentations, etc)",
                 ],
                 price: "Apply Only",
                 cta: "Apply Now",
                 popular: false,
-                link: "#",
+                link: "https://forms.gle/uB4L8x8y65jePv1H6",
               },
             ].map((program, index) => (
               <motion.div
@@ -346,7 +358,17 @@ export default function Home() {
                       {program.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
                           <CheckCircle className="h-5 w-5 text-teal-400 mr-2 shrink-0 mt-0.5" />
-                          <span className="text-gray-300 text-sm">{feature}</span>
+                          <span className="text-gray-300 text-sm">
+                            {feature.includes("FREE") ? (
+                              <>
+                                {feature.split("FREE")[0]}
+                                <span className="text-teal-400 font-bold">FREE</span>
+                                {feature.split("FREE")[1]}
+                              </>
+                            ) : (
+                              feature
+                            )}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -386,7 +408,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Rest of the page remains unchanged */}
+      {/* Questions Section */}
+      <section className="py-16 bg-gradient-to-b from-black to-gray-950 relative">
+        <div className="container px-4 mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="max-w-xl mx-auto"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Questions?</h2>
+            <p className="text-lg text-gray-300 mb-6">Contact me on my gmail</p>
+            <Button asChild variant="outline" className="border-teal-500 text-teal-400 hover:bg-teal-500/10">
+              <a
+                href="mailto:karanwalia2k3@gmail.com?subject=[Doubt]%20Hi,%20I%20came%20here%20from%20your%20website"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail className="mr-2 h-5 w-5" />
+                karanwalia2k3@gmail.com
+              </a>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Follow My Journey Section */}
       <section id="follow" className="py-24 bg-gradient-to-b from-black to-gray-950 relative">
         <div className="container px-4 mx-auto text-center">

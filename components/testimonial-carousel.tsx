@@ -11,13 +11,13 @@ const placeholderImages = {
   "Priya Sharma": "/confident-professional.png",
   "Rahul Patel": "/cheerful-indian-man.png",
   "Sarah Johnson": "/confident-blonde-professional.png",
-  "Alex Chen": "/placeholder.svg?key=moly4",
+  "Alex Chen": "/thoughtful-student.png",
   "Maya Rodriguez": "/joyful-latina.png",
-  "David Kim": "/confident-korean-executive.png",
-  "Aisha Patel": "/confident-architect.png",
-  "James Wilson": "/confident-executive.png",
+  "David Kim": "/confident-korean-businessman.png",
+  "Aisha Patel": "/confident-indian-architect.png",
+  "James Wilson": "/confident-bearded-professional.png",
   "Sophia Garcia": "/confident-hispanic-professional.png",
-  "Omar Hassan": "/focused-engineer.png",
+  "Omar Hassan": "/confident-engineer.png",
 }
 
 const testimonials = [
@@ -161,7 +161,7 @@ export default function TestimonialCarousel() {
 
   const renderTestimonialCard = (testimonial: (typeof testimonials)[0], index: number) => (
     <div className="inline-block w-[350px] flex-shrink-0 px-2" key={index}>
-      <Card className="h-[280px] bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-teal-500 transition-all duration-300">
+      <Card className="h-[280px] bg-gradient-to-br from-gray-800/80 to-gray-900/80 border-gray-700 hover:border-teal-500 transition-all duration-300">
         <CardContent className="p-4 h-full overflow-y-auto scrollbar-hide">
           <div className="flex items-start gap-3">
             <div className="relative">
@@ -170,6 +170,11 @@ export default function TestimonialCarousel() {
                 src={getImageSrc(testimonial) || "/placeholder.svg"}
                 alt={testimonial.name}
                 className="relative z-10 rounded-full w-16 h-16 object-cover border-2 border-teal-500/30"
+                onError={(e) => {
+                  // If image fails to load, replace with placeholder
+                  const target = e.target as HTMLImageElement
+                  target.src = `/placeholder.svg?height=64&width=64&query=${encodeURIComponent(testimonial.name)}`
+                }}
               />
             </div>
             <div className="flex-1">
@@ -192,7 +197,7 @@ export default function TestimonialCarousel() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {testimonials.map((testimonial, index) => (
             <div key={index}>
-              <Card className="h-[350px] bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-teal-500 transition-all duration-300">
+              <Card className="h-[350px] bg-gradient-to-br from-gray-800/80 to-gray-900/80 border-gray-700 hover:border-teal-500 transition-all duration-300">
                 <CardContent className="p-6 h-full overflow-y-auto scrollbar-hide">
                   <div className="flex items-start gap-4">
                     <div className="relative">
@@ -201,6 +206,11 @@ export default function TestimonialCarousel() {
                         src={getImageSrc(testimonial) || "/placeholder.svg"}
                         alt={testimonial.name}
                         className="relative z-10 rounded-full w-16 h-16 object-cover border-2 border-teal-500/30"
+                        onError={(e) => {
+                          // If image fails to load, replace with placeholder
+                          const target = e.target as HTMLImageElement
+                          target.src = `/placeholder.svg?height=64&width=64&query=${encodeURIComponent(testimonial.name)}`
+                        }}
                       />
                     </div>
                     <div className="flex-1">

@@ -2,7 +2,19 @@
 
 import { useEffect, useRef, useState } from "react"
 import { motion, useScroll } from "framer-motion"
-import { ArrowRight, CheckCircle, ChevronRight, ExternalLink, Instagram, Linkedin, Youtube } from "lucide-react"
+import {
+  ArrowRight,
+  CheckCircle,
+  ChevronRight,
+  ExternalLink,
+  Instagram,
+  Linkedin,
+  FileText,
+  Mail,
+  Users,
+  Twitter,
+  Youtube,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -42,14 +54,11 @@ export default function Home() {
 
         <div className="container relative z-10 px-4 py-32 md:py-48 mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <Badge className="mb-6 bg-teal-500/20 text-teal-300 hover:bg-teal-500/30 transition-all">
-              Personal Branding & Growth
-            </Badge>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-teal-300">
-              Tap Your Full Potential
+              Figure out what you're capable of
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-              Cold-reach companies, universities & investors with proven branding strategies
+            <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-4xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
+              Cold-reach companies, universities & investors with my strategies
             </p>
             <Button
               size="lg"
@@ -73,8 +82,8 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <span className="font-medium">4.89</span>
-              <span className="text-gray-400">(173)</span>
+              <span className="font-medium border-b border-teal-400">4.89</span>
+              <span className="text-gray-400 border-b border-teal-400">(173)</span>
             </a>
           </motion.div>
         </div>
@@ -122,24 +131,36 @@ export default function Home() {
               className="md:w-2/3"
             >
               <p className="text-xl mb-6 text-gray-300">
-                He's a 21-year-old influencer who, despite being from a tier-3 uni, successfully broke into big-tech
-                companies like Microsoft and got into top colleges like MIT, Cambridge, NUS and CMU.
+                He's a 21-year-old influencer who, despite being from a tier-3 uni, successfully broke into{" "}
+                <span className="font-bold text-teal-400">big-tech</span> companies like{" "}
+                <span className="font-bold text-teal-400">Microsoft</span> and got into{" "}
+                <span className="font-bold text-teal-400">top colleges</span> like{" "}
+                <span className="font-bold text-teal-400">MIT</span>, Cambridge, NUS and{" "}
+                <span className="font-bold text-teal-400">CMU</span>.
               </p>
+
               <p className="text-lg mb-6 text-gray-400">
-                Through years of trial and error, Karan has developed a proven system for personal branding that opens
-                doors to opportunities most people think are out of reach. His methods have helped hundreds of students
-                and professionals transform their careers and educational paths.
+                Back in college, he was always trying to figure things out; Should I do research? Intern somewhere? Work
+                on projects? He kept applying to 100+ companies every day and couldn't land even a single interview.
               </p>
+
+              <p className="text-lg mb-6 text-gray-400">
+                After landing offers from <span className="font-bold text-teal-400">Microsoft</span>, Google, and top
+                institutions like <span className="font-bold text-teal-400">MIT</span>,{" "}
+                <span className="font-bold text-teal-400">CMU</span>, NUS and Cambridge, he started sharing what really
+                helped him, no fluff, just honest advice that works.
+              </p>
+
               <p className="text-lg text-gray-400">
-                Now, he's on a mission to share his knowledge and help others achieve similar success through strategic
-                personal branding and cold outreach techniques.
+                He built this platform to help students like him, sharing how to build a personal brand, grow on
+                LinkedIn, and reach out to companies and colleges the smart way.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* 4 Things You Need To Know - Updated from "How It Works" */}
       <section id="how-it-works" className="py-24 bg-gradient-to-b from-gray-900 to-gray-950 relative overflow-hidden">
         <div className="container px-4 mx-auto">
           <motion.div
@@ -149,31 +170,32 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Your Personal Branding Roadmap</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">4 Things You Need To Know</h2>
             <div className="h-1 w-20 bg-teal-500 mx-auto"></div>
           </motion.div>
 
           <div className="flex flex-nowrap overflow-x-auto pb-8 gap-6 snap-x snap-mandatory scrollbar-hide">
             {[
               {
-                title: "Research & Target",
-                description: "Identify your ideal opportunities and understand what decision-makers are looking for.",
-                icon: "🔍",
+                title: "Cold-Emailing",
+                description: "What to write, when to send, and what to ask for to get responses from decision-makers.",
+                icon: <Mail className="h-10 w-10 text-teal-400" />,
               },
               {
-                title: "Craft Your Story",
-                description: "Develop a compelling personal narrative that highlights your unique value proposition.",
-                icon: "✍️",
+                title: "Resume ATS Optimization",
+                description: "Optimize your resume to pass ATS systems and land interview shortlists at big companies.",
+                icon: <FileText className="h-10 w-10 text-teal-400" />,
               },
               {
-                title: "Cold-Reach Mastery",
-                description: "Learn proven techniques to connect with gatekeepers and decision-makers.",
-                icon: "📱",
+                title: "Strategic Planning",
+                description:
+                  "How to plan your journey, target the right opportunities, and build a long-term strategy.",
+                icon: <Users className="h-10 w-10 text-teal-400" />,
               },
               {
-                title: "Community Support",
-                description: "Join a network of like-minded individuals on similar growth journeys.",
-                icon: "👥",
+                title: "Social Media Presence",
+                description: "Build your personal brand on LinkedIn and X to attract opportunities and connections.",
+                icon: <Twitter className="h-10 w-10 text-teal-400" />,
               },
             ].map((step, index) => (
               <motion.div
@@ -186,7 +208,7 @@ export default function Home() {
               >
                 <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-teal-500 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/20 hover:-translate-y-2">
                   <CardHeader>
-                    <div className="text-4xl mb-4">{step.icon}</div>
+                    <div className="mb-4">{step.icon}</div>
                     <CardTitle className="text-xl text-white">{step.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -194,7 +216,7 @@ export default function Home() {
                   </CardContent>
                   <CardFooter>
                     <p className="text-teal-400 flex items-center text-sm">
-                      Step {index + 1} <ChevronRight className="h-4 w-4 ml-1" />
+                      Learn More <ChevronRight className="h-4 w-4 ml-1" />
                     </p>
                   </CardFooter>
                 </Card>
@@ -222,7 +244,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA - Moved before Programs & Pricing */}
+      {/* Final CTA - Updated text */}
       <section className="py-24 bg-gradient-to-b from-black to-gray-950 relative">
         <div className="container px-4 mx-auto text-center">
           <motion.div
@@ -233,9 +255,7 @@ export default function Home() {
             className="max-w-3xl mx-auto"
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Level Up?</h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Don't let another opportunity pass you by. Start your personal branding journey today.
-            </p>
+            <p className="text-xl text-gray-300 mb-8">Choose Your Growth Path</p>
             <Button
               size="lg"
               onClick={() => scrollToSection("programs")}
@@ -247,19 +267,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Programs & Pricing */}
+      {/* Programs & Pricing - Updated heading */}
       <section id="programs" className="py-24 bg-gradient-to-b from-gray-950 to-black relative">
         <div className="container px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Choose Your Growth Path</h2>
-            <div className="h-1 w-20 bg-teal-500 mx-auto"></div>
-          </motion.div>
+          <div className="mb-8"></div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -280,9 +291,13 @@ export default function Home() {
               },
               {
                 title: "DIY Toolkit",
-                description: "Essential templates and guides",
-                features: ["Cold email templates", "LinkedIn optimization guide", "Personal branding checklist"],
-                price: "$10",
+                description: "My Templates and guides",
+                features: [
+                  "Cold email templates\n(including my cold mail 1. which got me into MIT, 2. Got me interviews at big tech 3. Got me on a call with a VC CEO with over $1Bn USD capital)",
+                  "LinkedIn optimization guide",
+                  "Resume ATS optimization guide (including the resume that got me interviews at Google, Microsoft, Adobe, IBM",
+                ],
+                price: "$5+",
                 cta: "Get Templates & Guides",
                 popular: false,
                 link: "https://topmate.io/karanwxlia",
@@ -371,6 +386,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Rest of the page remains unchanged */}
       {/* Follow My Journey Section */}
       <section id="follow" className="py-24 bg-gradient-to-b from-black to-gray-950 relative">
         <div className="container px-4 mx-auto text-center">

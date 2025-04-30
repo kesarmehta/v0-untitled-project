@@ -21,7 +21,7 @@ import { Badge } from "@/components/ui/badge"
 import NoiseBackground from "@/components/noise-background"
 import ProgressIndicator from "@/components/progress-indicator"
 import AnimatedGradientBackground from "@/components/animated-gradient-background"
-import TestimonialCarousel from "@/components/testimonial-carousel"
+import StaticTestimonials from "@/components/static-testimonials"
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -89,7 +89,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section - Updated with new image */}
       <section id="about" className="py-24 bg-gradient-to-b from-black to-gray-900">
         <div className="container px-4 mx-auto">
           <motion.div
@@ -100,7 +100,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Meet <span className="text-teal-400">(Jas)Karan</span>
+              Meet <span className="text-teal-400">Karan</span>
             </h2>
             <div className="h-1 w-20 bg-teal-500 mx-auto"></div>
           </motion.div>
@@ -116,8 +116,8 @@ export default function Home() {
               <div className="relative w-64 h-64 mx-auto">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-600 blur-lg opacity-70"></div>
                 <img
-                  src="/confident-young-professional.png"
-                  alt="(Jas)Karan Walia"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Picture1-bUjxZTKfivqadOtMUwKu6xLYZXSxUT.png"
+                  alt="Karan Walia"
                   className="relative z-10 rounded-full w-64 h-64 object-cover border-4 border-teal-500/30"
                 />
               </div>
@@ -131,36 +131,30 @@ export default function Home() {
               className="md:w-2/3"
             >
               <p className="text-xl mb-6 text-gray-300">
-                He's a 21-year-old influencer who, despite being from a tier-3 uni, successfully broke into{" "}
-                <span className="font-bold text-teal-400">big-tech</span> companies like{" "}
-                <span className="font-bold text-teal-400">Microsoft</span> and got into{" "}
-                <span className="font-bold text-teal-400">top colleges</span> like{" "}
-                <span className="font-bold text-teal-400">MIT</span>, Cambridge, NUS and{" "}
-                <span className="font-bold text-teal-400">CMU</span>.
+                I'm a 21-year-old from a tier-3 university in India who broke into{" "}
+                <span className="font-bold text-teal-400">big tech</span>, landing roles at{" "}
+                <span className="font-bold text-teal-400">Microsoft</span> and Google, and got into{" "}
+                <span className="font-bold text-teal-400">MIT</span>, NUS,{" "}
+                <span className="font-bold text-teal-400">CMU</span> and Cambridge.
               </p>
 
               <p className="text-lg mb-6 text-gray-400">
-                Back in college, he was always trying to figure things out; Should I do research? Intern somewhere? Work
-                on projects? He kept applying to 100+ companies every day and couldn't land even a single interview.
+                In college, I spent months wondering whether to focus on research, internships, or side projects, even
+                applying to over 100 companies and never landing a single interview.
               </p>
 
               <p className="text-lg mb-6 text-gray-400">
                 After landing offers from <span className="font-bold text-teal-400">Microsoft</span>, Google, and top
                 institutions like <span className="font-bold text-teal-400">MIT</span>,{" "}
-                <span className="font-bold text-teal-400">CMU</span>, NUS and Cambridge, he started sharing what really
-                helped him, no fluff, just honest advice that works.
-              </p>
-
-              <p className="text-lg text-gray-400">
-                He built this platform to help students like him, sharing how to build a personal brand, grow on
-                LinkedIn, and reach out to companies and colleges the smart way.
+                <span className="font-bold text-teal-400">CMU</span>, NUS and Cambridge, I started sharing what really
+                helped me, no fluff, just honest advice that works.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 4 Things You Need To Know - Updated from "How It Works" */}
+      {/* 4 Skills You Need To Master */}
       <section id="how-it-works" className="py-24 bg-gradient-to-b from-gray-900 to-gray-950 relative overflow-hidden">
         <div className="container px-4 mx-auto">
           <motion.div
@@ -170,7 +164,7 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">4 Things You Need To Know</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">4 Skills You Need To Master</h2>
             <div className="h-1 w-20 bg-teal-500 mx-auto"></div>
           </motion.div>
 
@@ -187,7 +181,7 @@ export default function Home() {
                 icon: <FileText className="h-10 w-10 text-teal-400" />,
               },
               {
-                title: "Strategic Planning",
+                title: "Realistic Path Planning",
                 description:
                   "How to plan your journey, target the right opportunities, and build a long-term strategy.",
                 icon: <Users className="h-10 w-10 text-teal-400" />,
@@ -226,7 +220,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Testimonials - Now using static testimonials */}
       <section id="testimonials" className="py-24 bg-gradient-to-b from-gray-950 to-black relative">
         <div className="container px-4 mx-auto">
           <motion.div
@@ -240,7 +234,7 @@ export default function Home() {
             <div className="h-1 w-20 bg-teal-500 mx-auto"></div>
           </motion.div>
 
-          <TestimonialCarousel />
+          <StaticTestimonials />
         </div>
       </section>
 

@@ -22,9 +22,11 @@ import NoiseBackground from "@/components/noise-background"
 import ProgressIndicator from "@/components/progress-indicator"
 import AnimatedGradientBackground from "@/components/animated-gradient-background"
 import StaticTestimonials from "@/components/static-testimonials"
+import PricingToggle from "@/components/pricing-toggle"
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [isAnnualBilling, setIsAnnualBilling] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -264,7 +266,9 @@ export default function Home() {
       {/* Programs & Pricing - Updated heading */}
       <section id="programs" className="py-24 bg-gradient-to-b from-gray-950 to-black relative">
         <div className="container px-4 mx-auto">
-          <div className="mb-8"></div>
+          <div className="mb-8">
+            <PricingToggle isAnnual={isAnnualBilling} onToggle={setIsAnnualBilling} />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -309,7 +313,9 @@ export default function Home() {
                   "1:1 resume reviews with Karan",
                   "1:1 cold-email reviews with Karan",
                 ],
-                price: "$49",
+                price: isAnnualBilling ? "$24.5" : "$49",
+                originalPrice: isAnnualBilling ? "$588" : null,
+                discount: isAnnualBilling ? "50%" : null,
                 cta: "Join the Community",
                 popular: true,
                 link: "https://whop.com",
@@ -339,24 +345,66 @@ export default function Home() {
                 viewport={{ once: true, margin: "-50px" }}
               >
                 <Card
-                  className={`h-full bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-teal-500 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/20 ${program.popular ? "border-teal-500 shadow-lg shadow-teal-500/20" : ""}`}
+                  className={`
+                    h-full 
+                    ${
+                      program.popular && !isAnnualBilling
+                        ? "bg-gradient-to-br from-gray-800 to-gray-900 border-teal-500 shadow-lg shadow-teal-500/20"
+                        : program.popular && isAnnualBilling
+                          ? "bg-gradient-to-br from-gray-800 to-gray-900 border-orange-500 shadow-lg shadow-orange-500/20"
+                          : "bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-teal-500 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/20"
+                    }
+                  `}
                 >
                   <CardHeader>
-                    {program.popular && <Badge className="self-start mb-2 bg-teal-500 text-black">Most Popular</Badge>}
+                    {program.popular && !isAnnualBilling && (
+                      <Badge className="self-start mb-2 bg-teal-500 text-black">Most Popular</Badge>
+                    )}
+                    {program.popular && isAnnualBilling && (
+                      <Badge className="self-start mb-2 bg-gradient-to-r from-orange-500 to-red-500 text-white">
+                        Best Value
+                      </Badge>
+                    )}
                     <CardTitle className="text-xl text-white">{program.title}</CardTitle>
                     <CardDescription className="text-gray-400">{program.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-2xl font-bold text-white">{program.price}</p>
+                    <div>
+                      {program.originalPrice && (
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-lg text-gray-400 line-through">{program.originalPrice}</span>
+                          <span className="text-sm bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-0.5 rounded-full">
+                            Save {program.discount}
+                          </span>
+                        </div>
+                      )}
+                      <p className="text-2xl font-bold text-white">
+                        {isAnnualBilling && program.title === "Community Pass" ? (
+                          <>
+                            $24.5 <span className="text-sm font-normal text-gray-300">per month</span>
+                          </>
+                        ) : (
+                          program.price
+                        )}
+                      </p>
+                    </div>
                     <ul className="space-y-2">
                       {program.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
-                          <CheckCircle className="h-5 w-5 text-teal-400 mr-2 shrink-0 mt-0.5" />
+                          <CheckCircle
+                            className={`h-5 w-5 mr-2 shrink-0 mt-0.5 ${
+                              program.popular && isAnnualBilling ? "text-orange-400" : "text-teal-400"
+                            }`}
+                          />
                           <span className="text-gray-300 text-sm">
                             {feature.includes("FREE") ? (
                               <>
                                 {feature.split("FREE")[0]}
-                                <span className="text-teal-400 font-bold">FREE</span>
+                                <span
+                                  className={`font-bold ${program.popular && isAnnualBilling ? "text-orange-400" : "text-teal-400"}`}
+                                >
+                                  FREE
+                                </span>
                                 {feature.split("FREE")[1]}
                               </>
                             ) : (
@@ -387,7 +435,13 @@ export default function Home() {
                     ) : (
                       <Button
                         asChild
-                        className={`w-full ${program.popular ? "bg-teal-500 hover:bg-teal-600 text-black" : "bg-gray-700 hover:bg-gray-600"}`}
+                        className={`w-full ${
+                          program.popular && !isAnnualBilling
+                            ? "bg-teal-500 hover:bg-teal-600 text-black"
+                            : program.popular && isAnnualBilling
+                              ? "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
+                              : "bg-gray-700 hover:bg-gray-600"
+                        }`}
                       >
                         <a href={program.link} target="_blank" rel="noopener noreferrer">
                           {program.cta} <ExternalLink className="ml-2 h-4 w-4" />

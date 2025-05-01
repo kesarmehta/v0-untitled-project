@@ -329,7 +329,7 @@ export default function StaticTestimonials() {
               >
                 <Card
                   className={`
-                    w-[140px] h-[90px]
+                    w-[180px] h-[120px]
                     transition-all duration-300 ease-in-out
                     bg-gradient-to-br from-gray-800/40 to-gray-900/40 border-gray-700/50
                     ${

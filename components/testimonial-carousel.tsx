@@ -179,7 +179,7 @@ export default function TestimonialCarousel() {
             </div>
             <div className="flex-1">
               <Quote className="h-4 w-4 text-teal-400 mb-1 opacity-50" />
-              <p className="text-gray-300 mb-3 text-sm italic">{testimonial.quote}</p>
+              <p className="text-gray-300 mb-3 text-sm italic break-words whitespace-normal">{testimonial.quote}</p>
               <div>
                 <h4 className="font-medium text-white text-sm">{testimonial.name}</h4>
                 <p className="text-xs text-teal-400">{testimonial.role}</p>

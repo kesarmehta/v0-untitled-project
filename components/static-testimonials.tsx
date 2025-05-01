@@ -43,7 +43,7 @@ const baseTestimonials = [
     quote:
       "The cold outreach templates and strategies were game-changers. I connected with senior leaders I never thought would respond to me. Within weeks, I had coffee chats with directors and VPs at top tech companies. Karan's system for following up was particularly effective in building meaningful relationships.",
     image: "/confident-blonde-professional.png",
-    featured: false,
+    featured: true,
     orangeFeatured: true,
   },
   {
@@ -340,7 +340,7 @@ export default function StaticTestimonials() {
           onMouseEnter={() => setHoveredRow(rowIndex)}
           onMouseLeave={() => setHoveredRow(null)}
         >
-          <div ref={(el) => (rowContentRefs.current[rowIndex] = el)} className="flex whitespace-nowrap">
+          <div ref={(el) => (rowContentRefs.current[rowIndex] = el)} className="flex">
             {/* Repeat items 3 times to ensure seamless looping */}
             {[...row, ...row, ...row].map((testimonial, itemIndex) => (
               <div
@@ -430,7 +430,9 @@ export default function StaticTestimonials() {
                             </p>
                           </div>
                         </div>
-                        <p className="text-gray-300 italic text-[7px] line-clamp-4">{testimonial.quote}</p>
+                        <p className="text-gray-300 italic text-[7px] line-clamp-4 break-words whitespace-normal">
+                          {testimonial.quote}
+                        </p>
                       </div>
                     </CardContent>
                   </Card>

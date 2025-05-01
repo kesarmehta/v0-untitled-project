@@ -46,7 +46,7 @@ export default function Home() {
   }
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-black text-white">
+    <div ref={containerRef} className="relative min-h-screen bg-black text-white overflow-x-hidden">
       <NoiseBackground />
       <ProgressIndicator progress={scrollProgress} />
 
@@ -56,7 +56,7 @@ export default function Home() {
 
         <div className="container relative z-10 px-4 py-32 md:py-48 mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-teal-300">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-teal-300 leading-tight pb-2">
               Figure out what you're capable of
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-4xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
@@ -268,7 +268,7 @@ export default function Home() {
                     </div>
                   </>,
                 ],
-                price: "$5+",
+                price: "$8+",
                 cta: "Get Templates & Guides",
                 popular: false,
                 link: "https://topmate.io/karanwxlia",
@@ -297,12 +297,12 @@ export default function Home() {
                 title: "Private Pass",
                 description: "Personalized 1:1 guidance",
                 features: [
-                  "Everything in DIY for FREE",
-                  "Everything in Community pass for FREE",
-                  "2 Weekly Private Calls with Karan",
-                  "2 Weekly Coaching Calls",
-                  "Interview tips and prep",
-                  "All document review (resume, mails, SOPs, research statements, presentations, etc)",
+                  "2 Weekly 1:1s with Karan",
+                  "Personalized path planing to achieve your goal (the way I did mine)",
+                  "Mock Interviews & Interview prep",
+                  "Scholarship & Funding Guidance on MS",
+                  "SOP/LOR/Resume/ColdMail/Presentation review",
+                  "Interview presentation & guide on how I've never once failed an Interview",
                 ],
                 price: "Apply Only",
                 cta: "Apply Now",
@@ -342,9 +342,9 @@ export default function Home() {
                     <CardDescription className="text-gray-400">{program.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div>
+                    <div key={index}>
                       {program.originalPrice && (
-                        <div key={index} className="flex items-center gap-2 mb-1">
+                        <div className="flex items-center gap-2 mb-1">
                           <span className="text-lg text-gray-400 line-through">{program.originalPrice}</span>
                           <span className="text-sm bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-0.5 rounded-full">
                             Save {program.discount}

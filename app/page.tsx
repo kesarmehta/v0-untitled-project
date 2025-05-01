@@ -102,7 +102,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Meet <span className="text-teal-400">Karan</span>
+              Meet <span className="text-teal-400">(Jas)Karan</span>
             </h2>
             <div className="h-1 w-20 bg-teal-500 mx-auto"></div>
           </motion.div>
@@ -133,10 +133,10 @@ export default function Home() {
               className="md:w-2/3"
             >
               <p className="text-xl mb-6 text-gray-300">
-                I'm a 21-year-old from a tier-3 university in India who broke into{" "}
-                <span className="font-bold text-teal-400">big tech</span>, landing roles at{" "}
-                <span className="font-bold text-teal-400">Microsoft</span> and Google, and got into{" "}
-                <span className="font-bold text-teal-400">MIT</span>, NUS,{" "}
+                Hey there :) You may have seen before but if not..... My name is Karan and I'm a 21-year-old from a
+                tier-3 university in India who broke into <span className="font-bold text-teal-400">big tech</span>,
+                landing roles at <span className="font-bold text-teal-400">Microsoft</span> and Google, and at the same
+                time also got into <span className="font-bold text-teal-400">MIT</span>, NUS,{" "}
                 <span className="font-bold text-teal-400">CMU</span> and Cambridge.
               </p>
 
@@ -146,10 +146,9 @@ export default function Home() {
               </p>
 
               <p className="text-lg mb-6 text-gray-400">
-                After landing offers from <span className="font-bold text-teal-400">Microsoft</span>, Google, and top
-                institutions like <span className="font-bold text-teal-400">MIT</span>,{" "}
-                <span className="font-bold text-teal-400">CMU</span>, NUS and Cambridge, I started sharing what really
-                helped me, no fluff, just honest advice that works.
+                After landing offers from Microsoft, Google, and top institutions like MIT, CMU, NUS and Cambridge, I
+                started sharing what really helped me (unlike these online "gurus" who sell without achieving), no
+                fluff, just honest advice of what works and what doesn't ;)
               </p>
             </motion.div>
           </div>
@@ -292,9 +291,48 @@ export default function Home() {
                 title: "DIY Toolkit",
                 description: "My Templates and guides",
                 features: [
-                  "Cold email templates (Including the cold email that: [1] got me into MIT, [2] landed big tech interviews, [3] secured a call with a $1B+ VC CEO.)",
-                  "LinkedIn optimization guide",
-                  "Resume ATS optimization guide (including my resume that got me interviews at Google, Microsoft, Adobe, and many more)",
+                  <>
+                    <span key="cold-email-templates" className="font-bold">
+                      Cold email templates
+                    </span>
+                    <div>
+                      <div key="cold-email-templates-1" className="flex">
+                        <span className="mr-2">•</span>
+                        <span>My 1h guide on how to be the best at cold-emailing.</span>
+                      </div>
+                      <div key="cold-email-templates-2" className="flex">
+                        <span className="mr-2">•</span>
+                        <span>The Mail that got me into Cambridge, MIT, CMU, NUS</span>
+                      </div>
+                      <div key="cold-email-templates-3" className="flex">
+                        <span className="mr-2">•</span>
+                        <span>The Mail that got me big tech & FAANG interviews</span>
+                      </div>
+                      <div key="cold-email-templates-4" className="flex">
+                        <span className="mr-2">•</span>
+                        <span>The Mail that secured me a call with a $1Bn+ VS CEO</span>
+                      </div>
+                    </div>
+                  </>,
+                  <>
+                    <span key="resume-ats-optimization" className="font-bold">
+                      Resume ATS optimization guide
+                    </span>
+                    <div>
+                      <div key="resume-ats-optimization-1" className="flex">
+                        <span className="mr-2">•</span>
+                        <span>My guide on how to beat the ATS</span>
+                      </div>
+                      <div key="resume-ats-optimization-2" className="flex">
+                        <span className="mr-2">•</span>
+                        <span>Including my resume that got me interviews at Microsoft, Google, Adobe, & more.</span>
+                      </div>
+                      <div key="resume-ats-optimization-3" className="flex">
+                        <span className="mr-2">•</span>
+                        <span>A bonus: My Academic_CV (not resume) for students.</span>
+                      </div>
+                    </div>
+                  </>,
                 ],
                 price: "$5+",
                 cta: "Get Templates & Guides",
@@ -307,12 +345,12 @@ export default function Home() {
                 features: [
                   "Everything in DIY for FREE",
                   "Monthly private 1:1s with Karan for personalized guidance",
-                  "Private community",
-                  "13+ Hours of personal Video content to help you crack bigtech and top unis",
-                  "1:1 Chat with Karan (replies daily)",
+                  "13+ Hours of personal Video content to crack bigtech and top unis",
                   "2 Weekly LIVE Community Calls",
-                  "1:1 resume reviews with Karan",
-                  "1:1 cold-email reviews with Karan",
+                  "Unlimited 1:1 Chat with Karan (replies daily)",
+                  "Private community",
+                  "Resume reviews with Karan",
+                  "Cold-email strategy & reviews with Karan",
                 ],
                 price: isAnnualBilling ? "$24.5" : "$49",
                 originalPrice: isAnnualBilling ? "$588" : null,
@@ -350,7 +388,7 @@ export default function Home() {
                     h-full 
                     ${
                       program.popular && !isAnnualBilling
-                        ? "bg-gradient-to-br from-gray-800 to-gray-900 border-teal-500 shadow-lg shadow-teal-500/20"
+                        ? "bg-teal-500 hover:bg-teal-600 text-black"
                         : program.popular && isAnnualBilling
                           ? "bg-gradient-to-br from-gray-800 to-gray-900 border-orange-500 shadow-lg shadow-orange-500/20"
                           : "bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-teal-500 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/20"
@@ -398,7 +436,7 @@ export default function Home() {
                             }`}
                           />
                           <span className="text-gray-300 text-sm">
-                            {feature.includes("FREE") ? (
+                            {typeof feature === "string" && feature.includes("FREE") ? (
                               <>
                                 {feature.split("FREE")[0]}
                                 <span
@@ -441,7 +479,7 @@ export default function Home() {
                             ? "bg-teal-500 hover:bg-teal-600 text-black"
                             : program.popular && isAnnualBilling
                               ? "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
-                              : "bg-gray-700 hover:bg-gray-600"
+                              : "bg-gray-700 hover:bg-gray-600 text-white border border-teal-500 hover:border-teal-400 transition-colors"
                         }`}
                       >
                         <a href={program.link} target="_blank" rel="noopener noreferrer">

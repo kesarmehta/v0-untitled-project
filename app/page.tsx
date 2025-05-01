@@ -5,7 +5,6 @@ import { motion, useScroll } from "framer-motion"
 import {
   ArrowRight,
   CheckCircle,
-  ChevronRight,
   ExternalLink,
   Instagram,
   Linkedin,
@@ -150,11 +149,6 @@ export default function Home() {
                   <CardContent>
                     <p className="text-gray-400">{step.description}</p>
                   </CardContent>
-                  <CardFooter>
-                    <p className="text-teal-400 flex items-center text-sm">
-                      Learn More <ChevronRight className="h-4 w-4 ml-1" />
-                    </p>
-                  </CardFooter>
                 </Card>
               </motion.div>
             ))}

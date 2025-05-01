@@ -254,7 +254,7 @@ export default function StaticTestimonials() {
       void row.offsetWidth
 
       // Apply animation
-      row.style.transition = `transform ${duration}s linear infinite`
+      row.style.transition = `transform ${duration}s linear infinite infinite`
 
       if (direction > 0) {
         // Moving right - start at left edge, move right by itemWidth
@@ -309,11 +309,11 @@ export default function StaticTestimonials() {
   }, [rowWidths, containerWidth, hoveredRow])
 
   return (
-    <div className="relative overflow-hidden" ref={containerRef}>
+    <div className="relative" ref={containerRef}>
       {testimonialRows.map((row, rowIndex) => (
         <div
           key={rowIndex}
-          className="relative overflow-hidden py-1"
+          className="relative py-4"
           ref={(el) => (rowContainerRefs.current[rowIndex] = el)}
           onMouseEnter={() => setHoveredRow(rowIndex)}
           onMouseLeave={() => setHoveredRow(null)}
@@ -327,44 +327,54 @@ export default function StaticTestimonials() {
                 onMouseEnter={() => setHoveredItem(itemIndex)}
                 onMouseLeave={() => setHoveredItem(null)}
               >
-                <Card
-                  className={`
-                    w-[180px] h-[120px]
-                    transition-all duration-300 ease-in-out
-                    bg-gradient-to-br from-gray-800/40 to-gray-900/40 border-gray-700/50
-                    ${
-                      hoveredRow === rowIndex && hoveredItem === itemIndex
-                        ? "border-teal-500 shadow-sm shadow-teal-500/20"
-                        : ""
-                    }
-                    ${hoveredRow !== null && hoveredRow !== rowIndex ? "opacity-30" : "opacity-100"}
-                  `}
-                >
-                  <CardContent className="p-2 h-full overflow-hidden">
-                    <div className="flex flex-col h-full">
-                      <div className="flex items-center gap-1 mb-1">
-                        <div className="relative">
-                          <div className="absolute inset-0 rounded-full bg-teal-500/20 blur-sm opacity-50"></div>
-                          <img
-                            src={getImageSrc(testimonial) || "/placeholder.svg"}
-                            alt={testimonial.name}
-                            className="relative z-10 rounded-full w-4 h-4 object-cover border border-teal-500/30"
-                            onError={(e) => {
-                              // If image fails to load, replace with placeholder
-                              const target = e.target as HTMLImageElement
-                              target.src = `/placeholder.svg?height=64&width=64&query=${encodeURIComponent(testimonial.name)}`
-                            }}
-                          />
+                <div className="relative">
+                  <Card
+                    className={`
+                      w-[180px] h-[120px]
+                      transition-all duration-300 ease-in-out
+                      bg-gradient-to-br from-gray-800/40 to-gray-900/40 border-gray-700/50
+                      ${
+                        hoveredRow === rowIndex && hoveredItem === itemIndex
+                          ? "border-teal-500 shadow-lg shadow-teal-500/30 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-150 z-50"
+                          : ""
+                      }
+                      ${hoveredRow !== null && hoveredRow !== rowIndex ? "opacity-30" : "opacity-100"}
+                    `}
+                    style={{
+                      width: hoveredRow === rowIndex && hoveredItem === itemIndex ? "180px" : "180px",
+                      height: hoveredRow === rowIndex && hoveredItem === itemIndex ? "120px" : "120px",
+                    }}
+                  >
+                    <CardContent className="p-2 h-full overflow-hidden">
+                      <div className="flex flex-col h-full">
+                        <div className="flex items-center gap-1 mb-1">
+                          <div className="relative">
+                            <div className="absolute inset-0 rounded-full bg-teal-500/20 blur-sm opacity-50"></div>
+                            <img
+                              src={getImageSrc(testimonial) || "/placeholder.svg"}
+                              alt={testimonial.name}
+                              className="relative z-10 rounded-full w-4 h-4 object-cover border border-teal-500/30"
+                              onError={(e) => {
+                                // If image fails to load, replace with placeholder
+                                const target = e.target as HTMLImageElement
+                                target.src = `/placeholder.svg?height=64&width=64&query=${encodeURIComponent(testimonial.name)}`
+                              }}
+                            />
+                          </div>
+                          <div className="overflow-hidden">
+                            <h4 className="font-medium text-white truncate text-[9px]">{testimonial.name}</h4>
+                            <p className="text-teal-400 truncate text-[7px]">{testimonial.role}</p>
+                          </div>
                         </div>
-                        <div className="overflow-hidden">
-                          <h4 className="font-medium text-white truncate text-[9px]">{testimonial.name}</h4>
-                          <p className="text-teal-400 truncate text-[7px]">{testimonial.role}</p>
-                        </div>
+                        <p className="text-gray-300 italic text-[7px] line-clamp-4">{testimonial.quote}</p>
                       </div>
-                      <p className="text-gray-300 italic text-[7px] line-clamp-4">{testimonial.quote}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                  {/* Invisible placeholder to maintain layout when card is absolutely positioned */}
+                  {hoveredRow === rowIndex && hoveredItem === itemIndex && (
+                    <div className="w-[180px] h-[120px] invisible"></div>
+                  )}
+                </div>
               </div>
             ))}
           </div>

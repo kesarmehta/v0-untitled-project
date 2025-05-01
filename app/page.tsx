@@ -281,7 +281,7 @@ export default function Home() {
                 cta: "Join My Socials",
                 popular: false,
                 links: [
-                  { icon: <Instagram className="h-5 w-5" />, url: "https://www.instagram.com/" },
+                  { icon: <Instagram className="h-5 w-5" />, url: "https://www.instagram.com/karanwalia.ai/" },
                   {
                     icon: <Linkedin className="h-5 w-5" />,
                     url: "https://www.linkedin.com/in/jaskaran-singh-walia-657696271/",
@@ -499,7 +499,7 @@ export default function Home() {
 
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
             <motion.a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/karanwalia.ai/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center group"
@@ -567,7 +567,7 @@ export default function Home() {
                 Terms of Service
               </a>
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/karanwalia.ai/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center text-gray-400 hover:text-teal-400 transition-colors"

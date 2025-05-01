@@ -20,7 +20,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import NoiseBackground from "@/components/noise-background"
 import ProgressIndicator from "@/components/progress-indicator"
-import AnimatedGradientBackground from "@/components/animated-gradient-background"
+import ProfessionalGradientBackground from "@/components/professional-gradient-background"
 import StaticTestimonials from "@/components/static-testimonials"
 import PricingToggle from "@/components/pricing-toggle"
 
@@ -52,7 +52,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <AnimatedGradientBackground />
+        <ProfessionalGradientBackground />
 
         <div className="container relative z-10 px-4 py-32 md:py-48 mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
@@ -156,6 +156,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Rest of the code remains the same */}
       {/* 4 Skills You Need To Master */}
       <section id="how-it-works" className="py-24 bg-gradient-to-b from-gray-900 to-gray-950 relative overflow-hidden">
         <div className="container px-4 mx-auto">

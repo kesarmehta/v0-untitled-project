@@ -64,15 +64,17 @@ const realTestimonials = [
   {
     name: "Pranav Shewale",
     role: "Intern at IIT-Mandi",
-    quote: "I got into IIT",
+    quote:
+      "I'm Pranav Shewale, a first‑year undergrad VIT. I first spoke to Jaskaran at a college event, and his journey to Microsoft and MIT inspired me. His approach on cold emailing combined with a follow‑up system worked wonders for me. I'm proud to say that I am now an AI Research Intern at IIT Mandi in my very first year!",
     image: "/pra.jpg",
     orangeFeatured: true,
   },
   {
     name: "Kaustubh Patil",
     role: "REU @UIUC, USA",
-    quote: "Got into UIUC",
-    image: "/kau.jpg",
+    quote:
+      "I recently secured a research internship at UIUC, thanks in part to Jaskaran. His cold emailing techniques boosted my response rate from professors, and his LinkedIn posts offered valuable insights into navigating REU admissions.",
+    image: "/kaus.jpg",
     orangeFeatured: true,
   },
   {
@@ -104,7 +106,7 @@ const realTestimonials = [
     role: "L2 SDE at Amazon, Blr",
     quote:
       "It's crazy how his guidance, resources, and reviews of my documents got me a FTO into Amazon, I owe it all to him :)",
-    image: "/person-meadow-distance.png",
+    image: "/distant-hiker.png",
     orangeFeatured: true,
   },
   {

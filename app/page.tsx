@@ -286,8 +286,8 @@ export default function Home() {
                   "Resume reviews with Karan",
                   "Cold-email strategy & reviews with Karan",
                 ],
-                price: isAnnualBilling ? "$24.5" : "$49",
-                originalPrice: isAnnualBilling ? "$588" : null,
+                price: isAnnualBilling ? "$19" : "$39",
+                originalPrice: isAnnualBilling ? "$228" : null,
                 discount: isAnnualBilling ? "50%" : null,
                 cta: "Join the Community",
                 popular: true,
@@ -354,7 +354,7 @@ export default function Home() {
                       <p className="text-2xl font-bold text-white">
                         {isAnnualBilling && program.title === "Community Pass" ? (
                           <>
-                            $24.5 <span className="text-sm font-normal text-gray-300">per month</span>
+                            $19 <span className="text-sm font-normal text-gray-300">per month</span>
                           </>
                         ) : (
                           program.price

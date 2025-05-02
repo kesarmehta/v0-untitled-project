@@ -3,209 +3,179 @@
 import { useState, useRef, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 
-// Define placeholder image URLs for each testimonial
-const placeholderImages = {
-  "Priya Sharma": "/confident-professional.png",
-  "Rahul Patel": "/cheerful-indian-man.png",
-  "Sarah Johnson": "/confident-blonde-professional.png",
-  "Alex Chen": "/thoughtful-student.png",
-  "Maya Rodriguez": "/joyful-latina.png",
-  "David Kim": "/confident-korean-businessman.png",
-  "Aisha Patel": "/confident-indian-architect.png",
-  "James Wilson": "/confident-bearded-professional.png",
-  "Sophia Garcia": "/confident-hispanic-professional.png",
-  "Omar Hassan": "/confident-engineer.png",
-}
-
-// Base testimonials
-const baseTestimonials = [
+// Real testimonials
+const realTestimonials = [
   {
-    name: "Priya Sharma",
-    role: "Software Engineer at Google",
+    name: "Karthik G Kumar",
+    role: "MITCAS researcher",
     quote:
-      "Karan's personal branding strategies helped me stand out in a sea of applicants. I landed my dream job at Google within 3 months of following his system. The LinkedIn optimization guide was particularly helpful in getting noticed by recruiters. I went from zero callbacks to multiple interviews per week.",
-    image: "/confident-professional.png",
-    featured: true,
+      "Karan's advice was quite helpful and I got selected for MITACS and got a research grant, this community has helped me with me what/how to do stuff.",
+    image: "/kar2.jpg",
+    orangeFeatured: true,
+  },
+  {
+    name: "Akhil Chhibber",
+    role: "Senior AI Consultant - Lionsville, Netherlands",
+    quote:
+      "I have to say Karan is quite a bundle of knowledge. Being a professor, I didn't expect it, but I got to learn a lot from him. The way he approaches cold e-mailing is quite unique and definitely out of the box.",
+    image: "/akh.jpg",
     orangeFeatured: false,
   },
   {
-    name: "Rahul Patel",
-    role: "MBA Student at Harvard",
+    name: "Shruti Priya",
+    role: "Research Intern @DRDO",
     quote:
-      "I was rejected from my top choice schools twice before. After working with Karan, I got accepted to 3 Ivy League programs including Harvard. His approach to crafting personal statements and preparing for interviews completely transformed how I presented myself to admissions committees.",
-    image: "/cheerful-indian-man.png",
-    featured: true,
-    orangeFeatured: true,
-  },
-  {
-    name: "Sarah Johnson",
-    role: "Product Manager at Meta",
-    quote:
-      "The cold outreach templates and strategies were game-changers. I connected with senior leaders I never thought would respond to me. Within weeks, I had coffee chats with directors and VPs at top tech companies. Karan's system for following up was particularly effective in building meaningful relationships.",
-    image: "/confident-blonde-professional.png",
-    featured: true,
-    orangeFeatured: true,
-  },
-  {
-    name: "Alex Chen",
-    role: "CS Student at MIT",
-    quote:
-      "Coming from a no-name school, I didn't think MIT was possible. Karan's guidance on showcasing my projects got me noticed and accepted. His advice on how to structure my portfolio and highlight my technical achievements made all the difference. I'm now collaborating with professors on research I'm passionate about.",
-    image: "/thoughtful-student.png",
-    featured: true,
+      "Jaskaran is an exceptional mentor. His clarity on advice is unmatched. He helped me secure my DRDO summer internship. Meeting him was an amazing experience, and I highly recommend him to all students feeling stuck.",
+    image: "/shruti.jpg",
     orangeFeatured: false,
   },
   {
-    name: "Maya Rodriguez",
-    role: "UX Designer at Apple",
+    name: "Yashas Donthi",
+    role: "Research Intern at CMU",
     quote:
-      "The community support was incredible. Having peers to review my portfolio and application materials made all the difference. Karan's feedback on my design case studies helped me articulate my process in a way that resonated with hiring managers. The mock interviews with community members prepared me for tough questions.",
-    image: "/joyful-latina.png",
-    featured: false,
+      "Took his advice on Cold-Mailing and got it reviewed by him, this mail got me into CMU as a research intern, crazy!",
+    image: "/yas.jpg",
     orangeFeatured: true,
   },
   {
-    name: "David Kim",
-    role: "Research Assistant at Cambridge",
+    name: "Nitin Dwivedi",
+    role: "",
     quote:
-      "Karan's advice on how to approach professors led to multiple research opportunities and eventually my position at Cambridge. His email templates for academic outreach helped me communicate my research interests clearly and professionally. I'm now working on projects I only dreamed about before.",
-    image: "/confident-korean-businessman.png",
-    featured: true,
+      "Jaskaran is one of the very few people who is actually helping people land positions in universities abroad. I couldn't find advice like his anywhere.",
+    image: "/person-distant-lake.png",
     orangeFeatured: false,
   },
   {
-    name: "Aisha Patel",
-    role: "Investment Banking Analyst",
+    name: "Swarna Baruah",
+    role: "",
     quote:
-      "The personal branding roadmap helped me position myself perfectly for finance roles despite having no connections in the industry. Karan's networking strategies opened doors at top firms, and his interview preparation techniques gave me the confidence to excel. I received offers from three bulge bracket banks.",
-    image: "/confident-indian-architect.png",
-    featured: false,
+      "I didn't think it would be this fast but after working with karan and using his advice, I already have 3 interviews lined up next week. Big shoutout to Jaskaran.",
+    image: "/person-beach-sunset.png",
     orangeFeatured: true,
   },
   {
-    name: "James Wilson",
-    role: "PhD Candidate at Stanford",
+    name: "Parul Anand",
+    role: "AI Policy @NLU",
     quote:
-      "Following Karan's system, I was able to secure full funding for my PhD program at Stanford after being rejected the previous year. His guidance on how to communicate with potential advisors and structure my research proposal made my application much stronger. The difference in responses was night and day.",
-    image: "/confident-bearded-professional.png",
-    featured: false,
-    orangeFeatured: true,
-  },
-  {
-    name: "Sophia Garcia",
-    role: "Marketing Manager at Nike",
-    quote:
-      "The LinkedIn optimization guide alone transformed my profile. I started getting inbound opportunities within weeks. Karan's content strategy for personal branding helped me establish myself as a thought leader in my niche. His templates for reaching out to hiring managers led directly to my role at Nike.",
-    image: "/confident-hispanic-professional.png",
-    featured: false,
+      "Jaskaran is not only a great mentor - he's also a great human being! It's clear how much he cares about solving your problem and providing you with the clarity you are seeking.",
+    image: "/par.jpg",
     orangeFeatured: false,
   },
   {
-    name: "Omar Hassan",
-    role: "Software Engineering Intern at Microsoft",
+    name: "Pranav Shewale",
+    role: "Intern at IIT-Mandi",
     quote:
-      "As an international student, I struggled to get noticed. Karan's strategies helped me land multiple FAANG interviews and ultimately my Microsoft internship. His resume review pointed out weaknesses I never would have noticed, and his system for preparing for technical interviews was incredibly effective.",
-    image: "/confident-engineer.png",
-    featured: false,
+      "I got into IIT",
+    image: "/pra.jpg",
     orangeFeatured: true,
+  },
+  {
+    name: "Kaustubh Patil",
+    role: "REU @UIUC, USA",
+    quote:
+      "Got into UIUC",
+    image: "/kaus.jpg",
+    orangeFeatured: true,
+  },
+  {
+    name: "Jade Gourlay",
+    role: "",
+    quote:
+      "The Community and guides was the best investment I've made, it has completely changed my applications and my knowledge.",
+    image: "/person-cliff-distance.png",
+    orangeFeatured: false,
+  },
+  {
+    name: "Vansh Goyal",
+    role: "Visiting student at Staford",
+    quote:
+      "I went from being rejected to getting so many replies with his suggestions, very impressive. I also got interviews from Stanford profs (which is cracked)",
+    image: "/person-desert-distance.png",
+    orangeFeatured: true,
+  },
+  {
+    name: "Pragya Ramesh Nair",
+    role: "",
+    quote:
+      "I got to learn so many things I didn't even know I needed. I don't think I can find such information and advice on google. Truly shows his experience.",
+    image: "/person-waterfall-distance.png",
+    orangeFeatured: false,
+  },
+  {
+    name: "A K",
+    role: "L2 SDE at Amazon, Blr",
+    quote:
+      "It's crazy how his guidance, resources, and reviews of my documents got me a FTO into Amazon, I owe it all to him :)",
+    image: "/person-meadow-distance.png",
+    orangeFeatured: true,
+  },
+  {
+    name: "P Karthik Manikantan",
+    role: "SWE Intern @Mercari Japan",
+    quote:
+      "He is extremely friendly and supportive , provided guidance on how to approach my research plan. Additionally, he helped me improve my research, enhancing my SOP, and even cold mailing.",
+    image: "/kar.jpg",
+    orangeFeatured: false,
+  },
+  {
+    name: "Shravan Venkatraman",
+    role: "PhD MBZUAI, Abu Dhabi",
+    quote:
+      "Karan's the kind of person who makes the grind fun - insanely smart, moves at a crazy pace, and makes every grind session feel like a training montage. I worked with him and our work got into CVPR which is unreal.",
+    image: "/shra.jpg",
+    orangeFeatured: true,
+  },
+  {
+    name: "Ashwin Kumar",
+    role: "",
+    quote:
+      "Karan plans your entire pursuit, offering an entire structured approach and clears all doubts you have. He shares his own journey to offer recommendations and to gauge the feasibility of your dreams.",
+    image: "/ash.jpg",
+    orangeFeatured: false,
+  },
+  {
+    name: "Sakshi Gor",
+    role: "",
+    quote:
+      "His community exceeded all my expectations, providing insights into internships, networking, and so much more.",
+    image: "/sak.jpg",
+    orangeFeatured: false,
   },
 ]
 
-// Generate more testimonials by modifying the base ones
-const generateMoreTestimonials = () => {
-  const allTestimonials = [...baseTestimonials]
+// Duplicate some testimonials to reach 18 (3 rows of 6)
+const allTestimonials = [
+  ...realTestimonials,
+  // Duplicate the first 3 testimonials to reach 18 total
+  {
+    ...realTestimonials[0],
+    image: "/person-hillside-distance.png", // Different image for duplicate
+  },
+  {
+    ...realTestimonials[1],
+    image: "/person-rocky-shore.png", // Different image for duplicate
+  },
+  {
+    ...realTestimonials[2],
+    image: "/person-misty-forest.png", // Different image for duplicate
+  },
+]
 
-  // Generate additional testimonials to reach 40+
-  const companies = [
-    "Amazon",
-    "Netflix",
-    "Spotify",
-    "Airbnb",
-    "Uber",
-    "Twitter",
-    "Dropbox",
-    "Adobe",
-    "IBM",
-    "Intel",
-    "Oracle",
-    "Salesforce",
-    "Tesla",
-    "SpaceX",
-    "Stripe",
-  ]
-  const universities = [
-    "Stanford",
-    "Yale",
-    "Princeton",
-    "Columbia",
-    "Cornell",
-    "Berkeley",
-    "UCLA",
-    "Oxford",
-    "Cambridge",
-    "ETH Zurich",
-    "Imperial College",
-    "Caltech",
-    "UPenn",
-    "Duke",
-    "Northwestern",
-  ]
-  const roles = [
-    "Software Developer",
-    "Data Scientist",
-    "Product Designer",
-    "Marketing Specialist",
-    "Financial Analyst",
-    "Research Assistant",
-    "Project Manager",
-    "UX Researcher",
-    "Business Analyst",
-    "ML Engineer",
-  ]
+// Organize testimonials into exactly 3 rows with 6 testimonials each
+const organizeIntoThreeRowsWithSixEach = (testimonials: typeof realTestimonials) => {
+  // Create 3 rows
+  const rows: (typeof realTestimonials)[][] = [[], [], []]
 
-  for (let i = 0; i < 30; i++) {
-    const baseIndex = i % baseTestimonials.length
-    const baseTestimonial = baseTestimonials[baseIndex]
-
-    // Create a variation
-    const company = companies[i % companies.length]
-    const university = universities[i % universities.length]
-    const role = roles[i % roles.length]
-
-    const newName = `${baseTestimonial.name.split(" ")[0]} ${String.fromCharCode(65 + (i % 26))}.`
-    const newRole = i % 2 === 0 ? `${role} at ${company}` : `${role} at ${university}`
-
-    allTestimonials.push({
-      name: newName,
-      role: newRole,
-      quote: baseTestimonial.quote,
-      image: baseTestimonial.image,
-      featured: false,
-      orangeFeatured: false,
-    })
+  // Distribute 6 testimonials to each row
+  for (let i = 0; i < testimonials.length; i++) {
+    const rowIndex = Math.floor(i / 6)
+    rows[rowIndex].push(testimonials[i])
   }
-
-  return allTestimonials
-}
-
-const allTestimonials = generateMoreTestimonials()
-
-// Organize testimonials into rows
-const organizeIntoRows = (testimonials: typeof baseTestimonials, rowCount = 4) => {
-  const rows: (typeof baseTestimonials)[][] = Array.from({ length: rowCount }, () => [])
-  const itemsPerRow = Math.ceil(testimonials.length / rowCount)
-
-  testimonials.forEach((testimonial, index) => {
-    const rowIndex = Math.floor(index / itemsPerRow)
-    if (rowIndex < rowCount) {
-      rows[rowIndex].push(testimonial)
-    }
-  })
 
   return rows
 }
 
-const testimonialRows = organizeIntoRows(allTestimonials, 4) // Changed from 5 to 4 rows
+const testimonialRows = organizeIntoThreeRowsWithSixEach(allTestimonials)
 
 export default function StaticTestimonials() {
   const [hoveredRow, setHoveredRow] = useState<number | null>(null)
@@ -216,22 +186,6 @@ export default function StaticTestimonials() {
   const [rowWidths, setRowWidths] = useState<number[]>([])
   const [containerWidth, setContainerWidth] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
-
-  // Function to get the appropriate image source
-  const getImageSrc = (testimonial: (typeof baseTestimonials)[0]) => {
-    // First try the testimonial's image
-    if (testimonial.image) {
-      return testimonial.image
-    }
-
-    // If no image, use the predefined placeholder for this person
-    if (placeholderImages[testimonial.name as keyof typeof placeholderImages]) {
-      return placeholderImages[testimonial.name as keyof typeof placeholderImages]
-    }
-
-    // Fallback to a generic placeholder
-    return `/placeholder.svg?height=64&width=64&query=${encodeURIComponent(testimonial.name)}`
-  }
 
   // Measure widths on mount and resize
   useEffect(() => {
@@ -335,7 +289,7 @@ export default function StaticTestimonials() {
       {testimonialRows.map((row, rowIndex) => (
         <div
           key={rowIndex}
-          className="relative py-4"
+          className="relative py-6" // Increased vertical spacing between rows
           ref={(el) => (rowContainerRefs.current[rowIndex] = el)}
           onMouseEnter={() => setHoveredRow(rowIndex)}
           onMouseLeave={() => setHoveredRow(null)}
@@ -345,56 +299,46 @@ export default function StaticTestimonials() {
             {[...row, ...row, ...row].map((testimonial, itemIndex) => (
               <div
                 key={`${rowIndex}-${itemIndex}`}
-                className="inline-block px-1"
+                className="inline-block px-2" // Increased horizontal spacing between cards
                 onMouseEnter={() => setHoveredItem(itemIndex)}
                 onMouseLeave={() => setHoveredItem(null)}
               >
                 <div className="relative">
                   <Card
                     className={`
-                      w-[180px] h-[120px]
+                      w-[270px] h-[180px]
                       transition-all duration-300 ease-in-out
                       ${
                         testimonial.orangeFeatured
                           ? "bg-gradient-to-br from-gray-800/60 to-gray-900/60 border-orange-700 shadow-md shadow-orange-900/20"
-                          : testimonial.featured
-                            ? "bg-gradient-to-br from-gray-800/60 to-gray-900/60 border-teal-700 shadow-md shadow-teal-900/20"
-                            : "bg-gradient-to-br from-gray-800/40 to-gray-900/40 border-gray-700/50"
+                          : "bg-gradient-to-br from-gray-800/60 to-gray-900/60 border-teal-700 shadow-md shadow-teal-900/20"
                       }
                       ${
                         hoveredRow === rowIndex && hoveredItem === itemIndex
-                          ? `border-${testimonial.orangeFeatured ? "orange" : testimonial.featured ? "teal" : "gray"}-500 shadow-lg shadow-${testimonial.orangeFeatured ? "orange" : testimonial.featured ? "teal" : "gray"}-500/30 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-150 z-50 ${testimonial.orangeFeatured || testimonial.featured ? `ring-1 ring-${testimonial.orangeFeatured ? "orange" : "teal"}-400` : ""}`
+                          ? `border-${testimonial.orangeFeatured ? "orange" : "teal"}-500 shadow-lg shadow-${testimonial.orangeFeatured ? "orange" : "teal"}-500/30 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-[1.5] z-50 ring-1 ring-${testimonial.orangeFeatured ? "orange" : "teal"}-400`
                           : ""
                       }
                       ${hoveredRow !== null && hoveredRow !== rowIndex ? "opacity-30" : "opacity-100"}
                     `}
                     style={{
-                      width: hoveredRow === rowIndex && hoveredItem === itemIndex ? "180px" : "180px",
-                      height: hoveredRow === rowIndex && hoveredItem === itemIndex ? "120px" : "120px",
+                      width: hoveredRow === rowIndex && hoveredItem === itemIndex ? "270px" : "270px",
+                      height: hoveredRow === rowIndex && hoveredItem === itemIndex ? "180px" : "180px",
                     }}
                   >
-                    <CardContent className="p-2 h-full overflow-hidden">
+                    <CardContent className="p-3 h-full overflow-hidden">
                       <div className="flex flex-col h-full">
-                        <div className="flex items-center gap-1 mb-1">
+                        <div className="flex items-center gap-2 mb-2">
                           <div className="relative">
                             <div
                               className={`absolute inset-0 rounded-full ${
-                                testimonial.orangeFeatured
-                                  ? "bg-orange-500/30"
-                                  : testimonial.featured
-                                    ? "bg-teal-500/30"
-                                    : "bg-teal-500/20"
+                                testimonial.orangeFeatured ? "bg-orange-500/30" : "bg-teal-500/30"
                               } blur-sm opacity-50`}
                             ></div>
                             <img
-                              src={getImageSrc(testimonial) || "/placeholder.svg"}
+                              src={testimonial.image || "/placeholder.svg"}
                               alt={testimonial.name}
-                              className={`relative z-10 rounded-full w-4 h-4 object-cover ${
-                                testimonial.orangeFeatured
-                                  ? "border border-orange-400/50"
-                                  : testimonial.featured
-                                    ? "border border-teal-400/50"
-                                    : "border border-teal-500/30"
+                              className={`relative z-10 rounded-full w-6 h-6 object-cover ${
+                                testimonial.orangeFeatured ? "border border-orange-400/50" : "border border-teal-400/50"
                               }`}
                               onError={(e) => {
                                 // If image fails to load, replace with placeholder
@@ -407,30 +351,24 @@ export default function StaticTestimonials() {
                           </div>
                           <div className="overflow-hidden">
                             <h4
-                              className={`font-medium text-white truncate text-[9px] ${
-                                testimonial.orangeFeatured
-                                  ? "text-orange-50"
-                                  : testimonial.featured
-                                    ? "text-teal-50"
-                                    : ""
+                              className={`font-medium text-white truncate text-xs ${
+                                testimonial.orangeFeatured ? "text-orange-50" : "text-teal-50"
                               }`}
                             >
                               {testimonial.name}
                             </h4>
-                            <p
-                              className={`${
-                                testimonial.orangeFeatured
-                                  ? "text-orange-300"
-                                  : testimonial.featured
-                                    ? "text-teal-300"
-                                    : "text-teal-400"
-                              } truncate text-[7px]`}
-                            >
-                              {testimonial.role}
-                            </p>
+                            {testimonial.role && (
+                              <p
+                                className={`${
+                                  testimonial.orangeFeatured ? "text-orange-300" : "text-teal-300"
+                                } truncate text-[10px]`}
+                              >
+                                {testimonial.role}
+                              </p>
+                            )}
                           </div>
                         </div>
-                        <p className="text-gray-300 italic text-[7px] line-clamp-4 break-words whitespace-normal">
+                        <p className="text-gray-300 italic text-[11px] line-clamp-5 break-words whitespace-normal">
                           {testimonial.quote}
                         </p>
                       </div>
@@ -438,7 +376,7 @@ export default function StaticTestimonials() {
                   </Card>
                   {/* Invisible placeholder to maintain layout when card is absolutely positioned */}
                   {hoveredRow === rowIndex && hoveredItem === itemIndex && (
-                    <div className="w-[180px] h-[120px] invisible"></div>
+                    <div className="w-[270px] h-[180px] invisible"></div>
                   )}
                 </div>
               </div>

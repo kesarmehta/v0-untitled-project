@@ -10,7 +10,7 @@ const realTestimonials = [
     role: "MITCAS researcher",
     quote:
       "Karan's advice was quite helpful and I got selected for MITACS and got a research grant, this community has helped me with me what/how to do stuff.",
-    image: "/placeholder.svg?height=64&width=64&text=KG",
+    image: "/kar2.jpg",
     orangeFeatured: true,
   },
   {
@@ -18,7 +18,7 @@ const realTestimonials = [
     role: "Senior AI Consultant - Lionsville, Netherlands",
     quote:
       "I have to say Karan is quite a bundle of knowledge. Being a professor, I didn't expect it, but I got to learn a lot from him. The way he approaches cold e-mailing is quite unique and definitely out of the box.",
-    image: "/placeholder.svg?height=64&width=64&text=AC",
+    image: "/akh.jpg",
     orangeFeatured: false,
   },
   {
@@ -26,7 +26,7 @@ const realTestimonials = [
     role: "Research Intern @DRDO",
     quote:
       "Jaskaran is an exceptional mentor. His clarity on advice is unmatched. He helped me secure my DRDO summer internship. Meeting him was an amazing experience, and I highly recommend him to all students feeling stuck.",
-    image: "/placeholder.svg?height=64&width=64&text=SP",
+    image: "/shruti.jpg",
     orangeFeatured: false,
   },
   {
@@ -34,7 +34,7 @@ const realTestimonials = [
     role: "Research Intern at CMU",
     quote:
       "Took his advice on Cold-Mailing and got it reviewed by him, this mail got me into CMU as a research intern, crazy!",
-    image: "/person-forest-distance.png",
+    image: "/yas.jpg",
     orangeFeatured: true,
   },
   {
@@ -58,21 +58,21 @@ const realTestimonials = [
     role: "AI Policy @NLU",
     quote:
       "Jaskaran is not only a great mentor - he's also a great human being! It's clear how much he cares about solving your problem and providing you with the clarity you are seeking.",
-    image: "/placeholder.svg?height=64&width=64&text=PA",
+    image: "/par.jpg",
     orangeFeatured: false,
   },
   {
     name: "Pranav Shewale",
     role: "Intern at IIT-Mandi",
     quote: "I got into IIT",
-    image: "/placeholder.svg?height=64&width=64&text=PS",
+    image: "/pra.jpg",
     orangeFeatured: true,
   },
   {
     name: "Kaustubh Patil",
     role: "REU @UIUC, USA",
     quote: "Got into UIUC",
-    image: "/placeholder.svg?height=64&width=64&text=KP",
+    image: "/kau.jpg",
     orangeFeatured: true,
   },
   {
@@ -112,7 +112,7 @@ const realTestimonials = [
     role: "SWE Intern @Mercari Japan",
     quote:
       "He is extremely friendly and supportive , provided guidance on how to approach my research plan. Additionally, he helped me improve my research, enhancing my SOP, and even cold mailing.",
-    image: "/placeholder.svg?height=64&width=64&text=PKM",
+    image: "/kar.jpg",
     orangeFeatured: false,
   },
   {
@@ -120,7 +120,7 @@ const realTestimonials = [
     role: "PhD MBZUAI, Abu Dhabi",
     quote:
       "Karan's the kind of person who makes the grind fun - insanely smart, moves at a crazy pace, and makes every grind session feel like a training montage. I worked with him and our work got into CVPR which is unreal.",
-    image: "/placeholder.svg?height=64&width=64&text=SV",
+    image: "/shra.jpg",
     orangeFeatured: true,
   },
   {
@@ -128,7 +128,7 @@ const realTestimonials = [
     role: "",
     quote:
       "Karan plans your entire pursuit, offering an entire structured approach and clears all doubts you have. He shares his own journey to offer recommendations and to gauge the feasibility of your dreams.",
-    image: "/placeholder.svg?height=64&width=64&text=AK",
+    image: "/ash.jpg",
     orangeFeatured: false,
   },
   {
@@ -136,42 +136,39 @@ const realTestimonials = [
     role: "",
     quote:
       "His community exceeded all my expectations, providing insights into internships, networking, and so much more.",
-    image: "/placeholder.svg?height=64&width=64&text=SG",
+    image: "/sak.jpg",
     orangeFeatured: false,
   },
 ]
 
-// Organize testimonials into exactly 3 rows with 6 testimonials each
-const organizeIntoThreeRowsWithSixEach = (testimonials: typeof realTestimonials) => {
-  // Create 3 rows
-  const rows: (typeof realTestimonials)[][] = [[], [], []]
+// Simplified function to organize testimonials into rows
+const organizeTestimonialsIntoRows = () => {
+  // Create a fixed number of rows (3)
+  const rows = [[], [], []]
 
-  // Ensure we have at least 18 testimonials (3 rows of 6)
-  const extendedTestimonials = [...testimonials]
+  // Make a copy of the testimonials array to avoid modifying the original
+  const testimonialsCopy = [...realTestimonials]
 
-  // If we don't have enough testimonials, duplicate some to reach 18
-  while (extendedTestimonials.length < 18) {
-    extendedTestimonials.push({
-      ...testimonials[extendedTestimonials.length % testimonials.length],
-      // Use a different image to avoid duplicates
-      image: `/placeholder.svg?height=64&width=64&text=${extendedTestimonials.length}`,
+  // If we have fewer than 18 testimonials, duplicate some to fill the rows
+  while (testimonialsCopy.length < 18) {
+    const index = testimonialsCopy.length % realTestimonials.length
+    testimonialsCopy.push({
+      ...realTestimonials[index],
+      image: realTestimonials[index].image || `/placeholder.svg?height=64&width=64&text=${testimonialsCopy.length}`,
     })
   }
 
-  // Distribute 6 testimonials to each row
-  for (let i = 0; i < extendedTestimonials.length; i++) {
+  // Distribute testimonials to rows (6 per row)
+  for (let i = 0; i < 18; i++) {
     const rowIndex = Math.floor(i / 6)
-    if (rowIndex < 3) {
-      // Ensure we only fill 3 rows
-      rows[rowIndex].push(extendedTestimonials[i])
-    }
+    rows[rowIndex].push(testimonialsCopy[i])
   }
 
   return rows
 }
 
-// Use the organizeIntoThreeRowsWithSixEach function directly
-const testimonialRows = organizeIntoThreeRowsWithSixEach(realTestimonials)
+// Use the simplified function
+const testimonialRows = organizeTestimonialsIntoRows()
 
 export default function StaticTestimonials() {
   const [hoveredRow, setHoveredRow] = useState<number | null>(null)

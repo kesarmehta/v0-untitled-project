@@ -10,7 +10,7 @@ const realTestimonials = [
     role: "MITCAS researcher",
     quote:
       "Karan's advice was quite helpful and I got selected for MITACS and got a research grant, this community has helped me with me what/how to do stuff.",
-    image: "/kar2.jpg",
+    image: "/placeholder.svg?height=64&width=64&text=KG",
     orangeFeatured: true,
   },
   {
@@ -18,7 +18,7 @@ const realTestimonials = [
     role: "Senior AI Consultant - Lionsville, Netherlands",
     quote:
       "I have to say Karan is quite a bundle of knowledge. Being a professor, I didn't expect it, but I got to learn a lot from him. The way he approaches cold e-mailing is quite unique and definitely out of the box.",
-    image: "/akh.jpg",
+    image: "/placeholder.svg?height=64&width=64&text=AC",
     orangeFeatured: false,
   },
   {
@@ -26,7 +26,7 @@ const realTestimonials = [
     role: "Research Intern @DRDO",
     quote:
       "Jaskaran is an exceptional mentor. His clarity on advice is unmatched. He helped me secure my DRDO summer internship. Meeting him was an amazing experience, and I highly recommend him to all students feeling stuck.",
-    image: "/shruti.jpg",
+    image: "/placeholder.svg?height=64&width=64&text=SP",
     orangeFeatured: false,
   },
   {
@@ -34,7 +34,7 @@ const realTestimonials = [
     role: "Research Intern at CMU",
     quote:
       "Took his advice on Cold-Mailing and got it reviewed by him, this mail got me into CMU as a research intern, crazy!",
-    image: "/yas.jpg",
+    image: "/person-forest-distance.png",
     orangeFeatured: true,
   },
   {
@@ -58,23 +58,21 @@ const realTestimonials = [
     role: "AI Policy @NLU",
     quote:
       "Jaskaran is not only a great mentor - he's also a great human being! It's clear how much he cares about solving your problem and providing you with the clarity you are seeking.",
-    image: "/par.jpg",
+    image: "/placeholder.svg?height=64&width=64&text=PA",
     orangeFeatured: false,
   },
   {
     name: "Pranav Shewale",
     role: "Intern at IIT-Mandi",
-    quote:
-      "I got into IIT",
-    image: "/pra.jpg",
+    quote: "I got into IIT",
+    image: "/placeholder.svg?height=64&width=64&text=PS",
     orangeFeatured: true,
   },
   {
     name: "Kaustubh Patil",
     role: "REU @UIUC, USA",
-    quote:
-      "Got into UIUC",
-    image: "/kaus.jpg",
+    quote: "Got into UIUC",
+    image: "/placeholder.svg?height=64&width=64&text=KP",
     orangeFeatured: true,
   },
   {
@@ -114,7 +112,7 @@ const realTestimonials = [
     role: "SWE Intern @Mercari Japan",
     quote:
       "He is extremely friendly and supportive , provided guidance on how to approach my research plan. Additionally, he helped me improve my research, enhancing my SOP, and even cold mailing.",
-    image: "/kar.jpg",
+    image: "/placeholder.svg?height=64&width=64&text=PKM",
     orangeFeatured: false,
   },
   {
@@ -122,7 +120,7 @@ const realTestimonials = [
     role: "PhD MBZUAI, Abu Dhabi",
     quote:
       "Karan's the kind of person who makes the grind fun - insanely smart, moves at a crazy pace, and makes every grind session feel like a training montage. I worked with him and our work got into CVPR which is unreal.",
-    image: "/shra.jpg",
+    image: "/placeholder.svg?height=64&width=64&text=SV",
     orangeFeatured: true,
   },
   {
@@ -130,7 +128,7 @@ const realTestimonials = [
     role: "",
     quote:
       "Karan plans your entire pursuit, offering an entire structured approach and clears all doubts you have. He shares his own journey to offer recommendations and to gauge the feasibility of your dreams.",
-    image: "/ash.jpg",
+    image: "/placeholder.svg?height=64&width=64&text=AK",
     orangeFeatured: false,
   },
   {
@@ -138,26 +136,8 @@ const realTestimonials = [
     role: "",
     quote:
       "His community exceeded all my expectations, providing insights into internships, networking, and so much more.",
-    image: "/sak.jpg",
+    image: "/placeholder.svg?height=64&width=64&text=SG",
     orangeFeatured: false,
-  },
-]
-
-// Duplicate some testimonials to reach 18 (3 rows of 6)
-const allTestimonials = [
-  ...realTestimonials,
-  // Duplicate the first 3 testimonials to reach 18 total
-  {
-    ...realTestimonials[0],
-    image: "/person-hillside-distance.png", // Different image for duplicate
-  },
-  {
-    ...realTestimonials[1],
-    image: "/person-rocky-shore.png", // Different image for duplicate
-  },
-  {
-    ...realTestimonials[2],
-    image: "/person-misty-forest.png", // Different image for duplicate
   },
 ]
 
@@ -166,16 +146,32 @@ const organizeIntoThreeRowsWithSixEach = (testimonials: typeof realTestimonials)
   // Create 3 rows
   const rows: (typeof realTestimonials)[][] = [[], [], []]
 
+  // Ensure we have at least 18 testimonials (3 rows of 6)
+  const extendedTestimonials = [...testimonials]
+
+  // If we don't have enough testimonials, duplicate some to reach 18
+  while (extendedTestimonials.length < 18) {
+    extendedTestimonials.push({
+      ...testimonials[extendedTestimonials.length % testimonials.length],
+      // Use a different image to avoid duplicates
+      image: `/placeholder.svg?height=64&width=64&text=${extendedTestimonials.length}`,
+    })
+  }
+
   // Distribute 6 testimonials to each row
-  for (let i = 0; i < testimonials.length; i++) {
+  for (let i = 0; i < extendedTestimonials.length; i++) {
     const rowIndex = Math.floor(i / 6)
-    rows[rowIndex].push(testimonials[i])
+    if (rowIndex < 3) {
+      // Ensure we only fill 3 rows
+      rows[rowIndex].push(extendedTestimonials[i])
+    }
   }
 
   return rows
 }
 
-const testimonialRows = organizeIntoThreeRowsWithSixEach(allTestimonials)
+// Use the organizeIntoThreeRowsWithSixEach function directly
+const testimonialRows = organizeIntoThreeRowsWithSixEach(realTestimonials)
 
 export default function StaticTestimonials() {
   const [hoveredRow, setHoveredRow] = useState<number | null>(null)

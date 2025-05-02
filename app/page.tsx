@@ -319,15 +319,15 @@ export default function Home() {
               >
                 <Card
                   className={`
-                    h-full 
-                    ${
-                      program.popular && !isAnnualBilling
-                        ? "bg-teal-500 hover:bg-teal-600 text-black"
-                        : program.popular && isAnnualBilling
-                          ? "bg-gradient-to-br from-gray-800 to-gray-900 border-orange-500 shadow-lg shadow-orange-500/20"
-                          : "bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-teal-500 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/20"
-                    }
-                  `}
+  h-full 
+  ${
+    program.popular && !isAnnualBilling
+      ? "bg-gradient-to-br from-gray-800 to-gray-900 border-teal-500 shadow-md shadow-teal-500/20"
+      : program.popular && isAnnualBilling
+        ? "bg-gradient-to-br from-gray-800 to-gray-900 border-orange-500 shadow-lg shadow-orange-500/20"
+        : "bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-teal-500 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/20"
+  }
+`}
                 >
                   <CardHeader>
                     {program.popular && !isAnnualBilling && (
@@ -410,7 +410,7 @@ export default function Home() {
                         asChild
                         className={`w-full ${
                           program.popular && !isAnnualBilling
-                            ? "bg-teal-500 hover:bg-teal-600 text-black"
+                            ? "bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white"
                             : program.popular && isAnnualBilling
                               ? "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
                               : "bg-gray-700 hover:bg-gray-600 text-white border border-teal-500 hover:border-teal-400 transition-colors"

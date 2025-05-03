@@ -14,7 +14,7 @@ export default function AboutSection() {
             <div className="relative w-64 h-64 mx-auto">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-600 blur-lg opacity-70"></div>
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Picture1-bUjxZTKfivqadOtMUwKu6xLYZXSxUT.png"
+                src="/karan-profile-high-quality.png"
                 alt="Karan Walia"
                 className="relative z-10 rounded-full w-64 h-64 object-cover border-4 border-teal-500/30"
               />
@@ -23,10 +23,12 @@ export default function AboutSection() {
 
           <div className="md:w-2/3">
             <p className="text-xl mb-6 text-white">
-              Hey there :) You may have seen before but if not..... My name is Karan and I'm a 21-year-old from a tier-3
-              university in India who broke into <span className="font-bold text-teal-400">big tech</span>, landing
-              roles at <span className="font-bold text-teal-400">Microsoft</span> and Google, and at the same time also
-              got into <span className="font-bold text-teal-400">MIT</span>, NUS,{" "}
+              Hey there :) You may have seen before but if not.....
+              <br />
+              My name is Karan and I'm a 21-year-old from a tier-3 university in India who broke into{" "}
+              <span className="font-bold text-teal-400">big tech</span>, landing roles at{" "}
+              <span className="font-bold text-teal-400">Microsoft</span> and Google, and at the same time also got into{" "}
+              <span className="font-bold text-teal-400">MIT</span>, NUS,{" "}
               <span className="font-bold text-teal-400">CMU</span> and Cambridge.
             </p>
 

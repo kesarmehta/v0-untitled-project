@@ -226,7 +226,7 @@ export default function Home() {
                     icon: <Linkedin className="h-8 w-8 text-white group-hover:text-blue-500 transition-colors" />,
                     url: "https://www.linkedin.com/in/jaskaran-singh-walia-657696271/",
                     platform: "LinkedIn",
-                    followers: "50k+ Connections",
+                    followers: "50k+ Followers",
                   },
                   {
                     icon: <Youtube className="h-8 w-8 text-white group-hover:text-red-500 transition-colors" />,
@@ -537,7 +537,7 @@ export default function Home() {
                 <Linkedin className="h-12 w-12 text-white group-hover:text-blue-500 transition-colors" />
               </div>
               <h3 className="text-xl font-bold text-white mb-1">LinkedIn</h3>
-              <p className="text-teal-400 font-medium">50k+ Connections</p>
+              <p className="text-teal-400 font-medium">50k+ Followers</p>
             </motion.a>
 
             <motion.a
@@ -590,7 +590,7 @@ export default function Home() {
                 className="flex items-center text-gray-400 hover:text-teal-400 transition-colors"
               >
                 <Linkedin className="h-6 w-6 mr-2" />
-                <span className="font-medium">50k+</span>
+                <span className="font-medium">50k+ Connections</span>
               </a>
             </div>
           </div>

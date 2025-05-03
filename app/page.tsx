@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useEffect, useRef, useState } from "react"
 import { motion, useScroll } from "framer-motion"
 import {
@@ -213,11 +215,24 @@ export default function Home() {
                 price: "Free",
                 cta: "Join My Socials",
                 popular: false,
-                links: [
-                  { icon: <Instagram className="h-5 w-5" />, url: "https://www.instagram.com/karanwalia.ai/" },
+                socialLinks: [
                   {
-                    icon: <Linkedin className="h-5 w-5" />,
+                    icon: <Instagram className="h-8 w-8 text-white group-hover:text-pink-400 transition-colors" />,
+                    url: "https://www.instagram.com/karanwalia.ai/",
+                    platform: "Instagram",
+                    followers: "35k+ Followers",
+                  },
+                  {
+                    icon: <Linkedin className="h-8 w-8 text-white group-hover:text-blue-500 transition-colors" />,
                     url: "https://www.linkedin.com/in/jaskaran-singh-walia-657696271/",
+                    platform: "LinkedIn",
+                    followers: "50k+ Connections",
+                  },
+                  {
+                    icon: <Youtube className="h-8 w-8 text-white group-hover:text-red-500 transition-colors" />,
+                    url: "https://www.youtube.com/",
+                    platform: "YouTube",
+                    followers: "Coming Soon",
                   },
                 ],
               },
@@ -229,7 +244,7 @@ export default function Home() {
                     <span key="cold-email-templates" className="font-bold">
                       Cold email templates
                     </span>
-                    <div>
+                    <div key="cold-email-templates-container">
                       <div key="cold-email-templates-1" className="flex">
                         <span className="mr-2">•</span>
                         <span>My 1h guide on how to be the best at cold-emailing.</span>
@@ -252,7 +267,7 @@ export default function Home() {
                     <span key="resume-ats-optimization" className="font-bold">
                       Resume ATS optimization guide
                     </span>
-                    <div>
+                    <div key="resume-ats-optimization-container">
                       <div key="resume-ats-optimization-1" className="flex">
                         <span className="mr-2">•</span>
                         <span>My guide on how to beat the ATS</span>
@@ -268,7 +283,7 @@ export default function Home() {
                     </div>
                   </>,
                 ],
-                price: "$8+",
+                price: "$7+",
                 cta: "Get Templates & Guides",
                 popular: false,
                 link: "https://topmate.io/karanwxlia",
@@ -287,7 +302,7 @@ export default function Home() {
                   "Cold-email strategy & reviews with Karan",
                 ],
                 price: isAnnualBilling ? "$19" : "$39",
-                originalPrice: isAnnualBilling ? "$228" : null,
+                originalPrice: isAnnualBilling ? "$468" : null,
                 discount: isAnnualBilling ? "50%" : null,
                 cta: "Join the Community",
                 popular: true,
@@ -309,16 +324,32 @@ export default function Home() {
                 popular: false,
                 link: "https://forms.gle/uB4L8x8y65jePv1H6",
               },
-            ].map((program, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-50px" }}
-              >
-                <Card
-                  className={`
+            ].map(
+              (
+                program: {
+                  title: string
+                  description: string
+                  features: React.ReactNode[]
+                  price: string
+                  cta: string
+                  popular: boolean
+                  link?: string
+                  links?: { icon: React.ReactNode; url: string }[]
+                  socialLinks?: { icon: React.ReactNode; url: string; platform: string; followers: string }[]
+                  originalPrice?: string | null
+                  discount?: string | null
+                },
+                index,
+              ) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                >
+                  <Card
+                    className={`
   h-full 
   ${
     program.popular && !isAnnualBilling
@@ -328,103 +359,108 @@ export default function Home() {
         : "bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-teal-500 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/20"
   }
 `}
-                >
-                  <CardHeader>
-                    {program.popular && !isAnnualBilling && (
-                      <Badge className="self-start mb-2 bg-teal-500 text-black">Most Popular</Badge>
-                    )}
-                    {program.popular && isAnnualBilling && (
-                      <Badge className="self-start mb-2 bg-gradient-to-r from-orange-500 to-red-500 text-white">
-                        Best Value
-                      </Badge>
-                    )}
-                    <CardTitle className="text-xl text-white">{program.title}</CardTitle>
-                    <CardDescription className="text-gray-400">{program.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div key={index}>
-                      {program.originalPrice && (
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-lg text-gray-400 line-through">{program.originalPrice}</span>
-                          <span className="text-sm bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-0.5 rounded-full">
-                            Save {program.discount}
-                          </span>
-                        </div>
+                  >
+                    <CardHeader>
+                      {program.popular && !isAnnualBilling && (
+                        <Badge className="self-start mb-2 bg-teal-500 text-black">Most Popular</Badge>
                       )}
-                      <p className="text-2xl font-bold text-white">
-                        {isAnnualBilling && program.title === "Community Pass" ? (
-                          <>
-                            $19 <span className="text-sm font-normal text-gray-300">per month</span>
-                          </>
-                        ) : (
-                          program.price
+                      {program.popular && isAnnualBilling && (
+                        <Badge className="self-start mb-2 bg-gradient-to-r from-orange-500 to-red-500 text-white">
+                          Best Value
+                        </Badge>
+                      )}
+                      <CardTitle className="text-xl text-white">{program.title}</CardTitle>
+                      <CardDescription className="text-gray-400">{program.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div key={index}>
+                        {program.originalPrice && (
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-lg text-gray-400 line-through">{program.originalPrice}</span>
+                            <span className="text-sm bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-0.5 rounded-full">
+                              Save {program.discount}
+                            </span>
+                          </div>
                         )}
-                      </p>
-                    </div>
-                    <ul className="space-y-2">
-                      {program.features.map((feature, i) => (
-                        <li key={i} className="flex items-start">
-                          <CheckCircle
-                            className={`h-5 w-5 mr-2 shrink-0 mt-0.5 ${
-                              program.popular && isAnnualBilling ? "text-orange-400" : "text-teal-400"
-                            }`}
-                          />
-                          <span className="text-gray-300 text-sm">
-                            {typeof feature === "string" && feature.includes("FREE") ? (
-                              <>
-                                {feature.split("FREE")[0]}
-                                <span
-                                  className={`font-bold ${program.popular && isAnnualBilling ? "text-orange-400" : "text-teal-400"}`}
-                                >
-                                  FREE
-                                </span>
-                                {feature.split("FREE")[1]}
-                              </>
-                            ) : (
-                              feature
-                            )}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                  <CardFooter>
-                    {program.links ? (
-                      <div className="flex space-x-2">
-                        {program.links.map((link, i) => (
-                          <Button
-                            key={i}
-                            variant="outline"
-                            size="sm"
-                            asChild
-                            className="border-teal-500 text-teal-400 hover:bg-teal-500/10"
-                          >
-                            <a href={link.url} target="_blank" rel="noopener noreferrer">
-                              {link.icon}
-                            </a>
-                          </Button>
-                        ))}
+                        <p className="text-2xl font-bold text-white">
+                          {isAnnualBilling && program.title === "Community Pass" ? (
+                            <>
+                              $19 <span className="text-sm font-normal text-gray-300">per month</span>
+                            </>
+                          ) : (
+                            program.price
+                          )}
+                        </p>
                       </div>
-                    ) : (
-                      <Button
-                        asChild
-                        className={`w-full ${
-                          program.popular && !isAnnualBilling
-                            ? "bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white"
-                            : program.popular && isAnnualBilling
-                              ? "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
-                              : "bg-gray-700 hover:bg-gray-600 text-white border border-teal-500 hover:border-teal-400 transition-colors"
-                        }`}
-                      >
-                        <a href={program.link} target="_blank" rel="noopener noreferrer">
-                          {program.cta} <ExternalLink className="ml-2 h-4 w-4" />
-                        </a>
-                      </Button>
-                    )}
-                  </CardFooter>
-                </Card>
-              </motion.div>
-            ))}
+                      <ul className="space-y-2">
+                        {program.features.map((feature, i) => (
+                          <li key={i} className="flex items-start">
+                            <CheckCircle
+                              className={`h-5 w-5 mr-2 shrink-0 mt-0.5 ${
+                                program.popular && isAnnualBilling ? "text-orange-400" : "text-teal-400"
+                              }`}
+                            />
+                            <span className="text-gray-300 text-sm">
+                              {typeof feature === "string" && feature.includes("FREE") ? (
+                                <>
+                                  {feature.split("FREE")[0]}
+                                  <span
+                                    className={`font-bold ${program.popular && isAnnualBilling ? "text-orange-400" : "text-teal-400"}`}
+                                  >
+                                    FREE
+                                  </span>
+                                  {feature.split("FREE")[1]}
+                                </>
+                              ) : (
+                                feature
+                              )}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                    <CardFooter>
+                      {program.socialLinks ? (
+                        <div className="w-full space-y-4">
+                          {program.socialLinks.map((link, i) => (
+                            <a
+                              key={i}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center group w-full p-2 rounded-lg hover:bg-gray-800/50 transition-colors"
+                            >
+                              <div className="p-2 rounded-full bg-gradient-to-br from-gray-800 to-gray-900 mr-3">
+                                {link.icon}
+                              </div>
+                              <div>
+                                <h4 className="font-medium text-white">{link.platform}</h4>
+                                <p className="text-sm text-teal-400">{link.followers}</p>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                      ) : (
+                        <Button
+                          asChild
+                          className={`w-full ${
+                            program.popular && !isAnnualBilling
+                              ? "bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white"
+                              : program.popular && isAnnualBilling
+                                ? "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
+                                : "bg-gray-700 hover:bg-gray-600 text-white border border-teal-500 hover:border-teal-400 transition-colors"
+                          }`}
+                        >
+                          <a href={program.link} target="_blank" rel="noopener noreferrer">
+                            {program.cta} <ExternalLink className="ml-2 h-4 w-4" />
+                          </a>
+                        </Button>
+                      )}
+                    </CardFooter>
+                  </Card>
+                </motion.div>
+              ),
+            )}
           </div>
         </div>
       </section>

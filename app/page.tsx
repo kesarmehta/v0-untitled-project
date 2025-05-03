@@ -306,7 +306,9 @@ export default function Home() {
                 discount: isAnnualBilling ? "50%" : null,
                 cta: "Join the Community",
                 popular: true,
-                link: "https://whop.com",
+                link: isAnnualBilling
+                  ? "https://whop.com/checkout/plan_BufPfqfj3Nyuq?d2c=true"
+                  : "https://whop.com/checkout/plan_Mtn89Zb3ehf57?d2c=true",
               },
               {
                 title: "Private Pass",
@@ -590,7 +592,7 @@ export default function Home() {
                 className="flex items-center text-gray-400 hover:text-teal-400 transition-colors"
               >
                 <Linkedin className="h-6 w-6 mr-2" />
-                <span className="font-medium">50k+ Connections</span>
+                <span className="font-medium">50k+ Followers</span>
               </a>
             </div>
           </div>

@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Tap Your Full Potential – Cold-Reach Companies, Universities & Investors",
+  title: "CrackWithKaran :)",
   description:
     "(Jas)Karan Walia's proven personal-branding roadmap: from a tier-3 uni to Microsoft, MIT, Cambridge, NUS & CMU. Start your growth journey today!",
   keywords:

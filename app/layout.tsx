@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     "(Jas)Karan Walia's proven personal-branding roadmap: from a tier-3 uni to Microsoft, MIT, Cambridge, NUS & CMU. Start your growth journey today!",
   keywords:
     "personal branding, cold outreach, college admissions, FAANG internships, community coaching, growth journey",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
     generator: 'v0.dev'
 }
 

@@ -294,7 +294,6 @@ export default function Home() {
                 features: [
                   "Everything in DIY for FREE",
                   "Monthly private 1:1s with Karan for personalized guidance",
-                  "13+ Hours of personal Video content to crack bigtech and top unis",
                   "2 Weekly LIVE Community Calls",
                   "Unlimited 1:1 Chat with Karan (replies daily)",
                   "Private community",
@@ -314,6 +313,8 @@ export default function Home() {
                 title: "Private Pass",
                 description: "Personalized 1:1 guidance",
                 features: [
+                  "Everything in DIY for FREE",
+                  "Everything in Community Pass for FREE",
                   "2 Weekly 1:1s with Karan",
                   "Personalized path planing to achieve your goal (the way I did mine)",
                   "Mock Interviews & Interview prep",
@@ -379,6 +380,9 @@ export default function Home() {
                         {program.originalPrice && (
                           <div className="flex items-center gap-2 mb-1">
                             <span className="text-lg text-gray-400 line-through">{program.originalPrice}</span>
+                            {program.title === "Community Pass" && isAnnualBilling && (
+                              <span className="text-lg text-white">$228</span>
+                            )}
                             <span className="text-sm bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-0.5 rounded-full">
                               Save {program.discount}
                             </span>
@@ -421,7 +425,7 @@ export default function Home() {
                         ))}
                       </ul>
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="flex flex-col gap-2">
                       {program.socialLinks ? (
                         <div className="w-full space-y-4">
                           {program.socialLinks.map((link, i) => (
@@ -443,20 +447,37 @@ export default function Home() {
                           ))}
                         </div>
                       ) : (
-                        <Button
-                          asChild
-                          className={`w-full ${
-                            program.popular && !isAnnualBilling
-                              ? "bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white"
-                              : program.popular && isAnnualBilling
-                                ? "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
-                                : "bg-gray-700 hover:bg-gray-600 text-white border border-teal-500 hover:border-teal-400 transition-colors"
-                          }`}
-                        >
-                          <a href={program.link} target="_blank" rel="noopener noreferrer">
-                            {program.cta} <ExternalLink className="ml-2 h-4 w-4" />
-                          </a>
-                        </Button>
+                        <>
+                          <Button
+                            asChild
+                            className={`w-full ${
+                              program.popular && !isAnnualBilling
+                                ? "bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white"
+                                : program.popular && isAnnualBilling
+                                  ? "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
+                                  : "bg-gray-700 hover:bg-gray-600 text-white border border-teal-500 hover:border-teal-400 transition-colors"
+                            }`}
+                          >
+                            <a href={program.link} target="_blank" rel="noopener noreferrer">
+                              {program.cta} <ExternalLink className="ml-2 h-4 w-4" />
+                            </a>
+                          </Button>
+
+                          {program.title === "Community Pass" && (
+                            <a
+                              href={
+                                isAnnualBilling
+                                  ? "https://whop.com/checkout/plan_99QFwvJhJAFqr?d2c=true"
+                                  : "https://whop.com/checkout/plan_zAJydUs5Z7SBp?d2c=true"
+                              }
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs text-center text-gray-400 underline hover:text-teal-400 transition-colors mt-1"
+                            >
+                              Click here to pay in INR
+                            </a>
+                          )}
+                        </>
                       )}
                     </CardFooter>
                   </Card>

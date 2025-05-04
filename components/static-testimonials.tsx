@@ -87,11 +87,11 @@ const realTestimonials = [
   },
   {
     name: "Vansh Goyal",
-    role: "Visiting student at Staford",
+    role: "Visiting student at Stanford",
     quote:
       "I went from being rejected to getting so many replies with his suggestions, very impressive. I also got interviews from Stanford profs (which is cracked)",
     image: "/person-desert-distance.png",
-    orangeFeatured: true,
+    orangeFeatured: false,
   },
   {
     name: "Pragya Ramesh Nair",
@@ -119,7 +119,7 @@ const realTestimonials = [
   },
   {
     name: "Shravan Venkatraman",
-    role: "PhD MBZUAI, Abu Dhabi",
+    role: "MS @ MBZUAI",
     quote:
       "Karan's the kind of person who makes the grind fun - insanely smart, moves at a crazy pace, and makes every grind session feel like a training montage. I worked with him and our work got into CVPR which is unreal.",
     image: "/shra.jpg",

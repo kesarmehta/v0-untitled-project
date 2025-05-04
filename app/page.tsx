@@ -300,14 +300,15 @@ export default function Home() {
                   "Resume reviews with Karan",
                   "Cold-email strategy & reviews with Karan",
                 ],
-                price: isAnnualBilling ? "$19" : "$39",
-                originalPrice: isAnnualBilling ? "$468" : null,
-                discount: isAnnualBilling ? "50%" : null,
+                price: isAnnualBilling ? "$14" : "$29",
+                originalPrice: isAnnualBilling ? "$348" : null,
+                discount: isAnnualBilling ? "52%" : null,
+                annualTotal: isAnnualBilling ? "$168" : null,
                 cta: "Join the Community",
                 popular: true,
                 link: isAnnualBilling
-                  ? "https://whop.com/checkout/plan_BufPfqfj3Nyuq?d2c=true"
-                  : "https://whop.com/checkout/plan_Mtn89Zb3ehf57?d2c=true",
+                  ? "https://whop.com/checkout/plan_Jonedderhu6uc?d2c=true"
+                  : "https://whop.com/checkout/plan_LjzSBKPI6GCUz?d2c=true",
               },
               {
                 title: "Private Pass",
@@ -341,6 +342,7 @@ export default function Home() {
                   socialLinks?: { icon: React.ReactNode; url: string; platform: string; followers: string }[]
                   originalPrice?: string | null
                   discount?: string | null
+                  annualTotal?: string | null
                 },
                 index,
               ) => (
@@ -381,7 +383,7 @@ export default function Home() {
                           <div className="flex items-center gap-2 mb-1">
                             <span className="text-lg text-gray-400 line-through">{program.originalPrice}</span>
                             {program.title === "Community Pass" && isAnnualBilling && (
-                              <span className="text-lg text-white">$228</span>
+                              <span className="text-lg text-white">{program.annualTotal}</span>
                             )}
                             <span className="text-sm bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-0.5 rounded-full">
                               Save {program.discount}
@@ -391,7 +393,7 @@ export default function Home() {
                         <p className="text-2xl font-bold text-white">
                           {isAnnualBilling && program.title === "Community Pass" ? (
                             <>
-                              $19 <span className="text-sm font-normal text-gray-300">per month</span>
+                              $14 <span className="text-sm font-normal text-gray-300">per month</span>
                             </>
                           ) : (
                             program.price
@@ -467,8 +469,8 @@ export default function Home() {
                             <a
                               href={
                                 isAnnualBilling
-                                  ? "https://whop.com/checkout/plan_99QFwvJhJAFqr?d2c=true"
-                                  : "https://whop.com/checkout/plan_zAJydUs5Z7SBp?d2c=true"
+                                  ? "https://whop.com/checkout/plan_8b3rJkKgm5eFd?d2c=true"
+                                  : "https://whop.com/checkout/plan_Dmys0tcvrtPdG?d2c=true"
                               }
                               target="_blank"
                               rel="noopener noreferrer"

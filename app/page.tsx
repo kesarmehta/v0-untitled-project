@@ -283,7 +283,7 @@ export default function Home() {
                     </div>
                   </>,
                 ],
-                price: "$7+",
+                price: "$10",
                 cta: "Get Templates & Guides",
                 popular: false,
                 link: "https://topmate.io/karanwxlia",

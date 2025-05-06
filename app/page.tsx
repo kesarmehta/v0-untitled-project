@@ -15,6 +15,7 @@ import {
   Users,
   Twitter,
   Youtube,
+  XCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -324,9 +325,10 @@ export default function Home() {
                   "Interview presentation & guide on how I've never once failed an Interview",
                 ],
                 price: "Apply Only",
-                cta: "Apply Now",
+                cta: "Applications Closed",
                 popular: false,
-                link: "https://forms.gle/uB4L8x8y65jePv1H6",
+                link: "#",
+                applicationsClosed: true,
               },
             ].map(
               (
@@ -343,6 +345,7 @@ export default function Home() {
                   originalPrice?: string | null
                   discount?: string | null
                   annualTotal?: string | null
+                  applicationsClosed?: boolean
                 },
                 index,
               ) => (
@@ -447,6 +450,16 @@ export default function Home() {
                               </div>
                             </a>
                           ))}
+                        </div>
+                      ) : program.applicationsClosed ? (
+                        <div className="w-full">
+                          <div className="w-full flex items-center justify-center bg-gray-900 text-gray-500 py-3 px-4 rounded-md border border-gray-700 cursor-not-allowed">
+                            <XCircle className="mr-2 h-5 w-5" />
+                            <span className="line-through">Applications Closed</span>
+                          </div>
+                          <p className="text-xs text-center text-gray-500 mt-2">
+                            Private Pass applications are currently not being accepted
+                          </p>
                         </div>
                       ) : (
                         <>

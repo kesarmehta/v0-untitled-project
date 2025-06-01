@@ -29,7 +29,7 @@ import AboutSection from "@/components/about-section"
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
-  const [isAnnualBilling, setIsAnnualBilling] = useState(true)
+  const [isAnnualBilling, setIsAnnualBilling] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -221,13 +221,13 @@ export default function Home() {
                     icon: <Instagram className="h-8 w-8 text-white group-hover:text-pink-400 transition-colors" />,
                     url: "https://www.instagram.com/karanwalia.ai/",
                     platform: "Instagram",
-                    followers: "35k+ Followers",
+                    followers: "50k+ Followers",
                   },
                   {
                     icon: <Linkedin className="h-8 w-8 text-white group-hover:text-blue-500 transition-colors" />,
                     url: "https://www.linkedin.com/in/jaskaran-singh-walia-657696271/",
                     platform: "LinkedIn",
-                    followers: "50k+ Followers",
+                    followers: "55k+ Followers",
                   },
                   {
                     icon: <Youtube className="h-8 w-8 text-white group-hover:text-red-500 transition-colors" />,
@@ -558,7 +558,7 @@ export default function Home() {
                 <Instagram className="h-12 w-12 text-white group-hover:text-pink-400 transition-colors" />
               </div>
               <h3 className="text-xl font-bold text-white mb-1">Instagram</h3>
-              <p className="text-teal-400 font-medium">30k+ Followers</p>
+              <p className="text-teal-400 font-medium">50k+ Followers</p>
             </motion.a>
 
             <motion.a
@@ -575,7 +575,7 @@ export default function Home() {
                 <Linkedin className="h-12 w-12 text-white group-hover:text-blue-500 transition-colors" />
               </div>
               <h3 className="text-xl font-bold text-white mb-1">LinkedIn</h3>
-              <p className="text-teal-400 font-medium">50k+ Followers</p>
+              <p className="text-teal-400 font-medium">55k+ Followers</p>
             </motion.a>
 
             <motion.a
@@ -619,7 +619,7 @@ export default function Home() {
                 className="flex items-center text-gray-400 hover:text-teal-400 transition-colors"
               >
                 <Instagram className="h-6 w-6 mr-2" />
-                <span className="font-medium">30k+</span>
+                <span className="font-medium">50k+</span>
               </a>
               <a
                 href="https://www.linkedin.com/in/jaskaran-singh-walia-657696271/"
@@ -628,7 +628,7 @@ export default function Home() {
                 className="flex items-center text-gray-400 hover:text-teal-400 transition-colors"
               >
                 <Linkedin className="h-6 w-6 mr-2" />
-                <span className="font-medium">50k+ Followers</span>
+                <span className="font-medium">55k+ Followers</span>
               </a>
             </div>
           </div>

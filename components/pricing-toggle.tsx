@@ -8,21 +8,21 @@ interface PricingToggleProps {
 
 export default function PricingToggle({ onToggle, isAnnual }: PricingToggleProps) {
   return (
-    <div className="flex items-center justify-center gap-4 mb-12">
+    <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
       <span
-        className={`text-lg font-medium transition-colors duration-200 ${isAnnual ? "text-gray-400" : "text-white"}`}
+        className={`text-xl font-medium transition-colors duration-200 ${isAnnual ? "text-gray-400" : "text-white"}`}
       >
         Monthly
       </span>
 
       <div
-        className="relative w-20 h-10 bg-gray-800 rounded-full p-1 cursor-pointer"
+        className="relative w-24 h-12 bg-gray-800 rounded-full p-1 cursor-pointer"
         onClick={() => onToggle(!isAnnual)}
       >
         <motion.div
-          className="absolute top-1 left-1 w-8 h-8 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 flex items-center justify-center"
+          className="absolute top-1 left-1 w-10 h-10 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 flex items-center justify-center"
           animate={{
-            x: isAnnual ? 40 : 0,
+            x: isAnnual ? 48 : 0,
             background: isAnnual
               ? "linear-gradient(to right, #f97316, #ef4444)"
               : "linear-gradient(to right, #14b8a6, #10b981)",
@@ -30,7 +30,7 @@ export default function PricingToggle({ onToggle, isAnnual }: PricingToggleProps
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
         >
           <motion.div
-            className="w-6 h-6 rounded-full bg-white/10"
+            className="w-8 h-8 rounded-full bg-white/10"
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 0.3, times: [0, 0.5, 1], ease: "easeInOut" }}
             key={isAnnual ? "annual" : "monthly"}
@@ -47,10 +47,17 @@ export default function PricingToggle({ onToggle, isAnnual }: PricingToggleProps
       </div>
 
       <span
-        className={`text-lg font-medium transition-colors duration-200 ${isAnnual ? "text-white" : "text-gray-400"}`}
+        className={`text-xl font-medium transition-colors duration-200 text-gradient-orange`}
+        style={{
+          background: "linear-gradient(to right, #f97316, #ef4444)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
       >
         Annually
       </span>
+
+      <span className="text-lg font-bold ml-4 text-white">Toggle for a 50% off annually</span>
 
       {isAnnual && (
         <motion.div

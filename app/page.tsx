@@ -301,15 +301,15 @@ export default function Home() {
                   "Resume reviews with Karan",
                   "Cold-email strategy & reviews with Karan",
                 ],
-                price: isAnnualBilling ? "$14" : "$29",
-                originalPrice: isAnnualBilling ? "$348" : null,
-                discount: isAnnualBilling ? "52%" : null,
-                annualTotal: isAnnualBilling ? "$168" : null,
+                price: isAnnualBilling ? "$25" : "$49",
+                originalPrice: isAnnualBilling ? "$588" : null,
+                discount: isAnnualBilling ? "49%" : null,
+                annualTotal: isAnnualBilling ? "$299" : null,
                 cta: "Join the Community",
                 popular: true,
                 link: isAnnualBilling
-                  ? "https://whop.com/checkout/plan_Jonedderhu6uc?d2c=true"
-                  : "https://whop.com/checkout/plan_LjzSBKPI6GCUz?d2c=true",
+                  ? "https://whop.com/checkout/plan_OcuDXSg9n2hwY?d2c=true"
+                  : "https://whop.com/checkout/plan_bg4tM71Fs9BFF?d2c=true",
               },
               {
                 title: "Private Pass",
@@ -396,7 +396,7 @@ export default function Home() {
                         <p className="text-2xl font-bold text-white">
                           {isAnnualBilling && program.title === "Community Pass" ? (
                             <>
-                              $14 <span className="text-sm font-normal text-gray-300">per month</span>
+                              $25 <span className="text-sm font-normal text-gray-300">per month</span>
                             </>
                           ) : (
                             program.price
@@ -482,8 +482,8 @@ export default function Home() {
                             <a
                               href={
                                 isAnnualBilling
-                                  ? "https://whop.com/checkout/plan_8b3rJkKgm5eFd?d2c=true"
-                                  : "https://whop.com/checkout/plan_Dmys0tcvrtPdG?d2c=true"
+                                  ? "https://whop.com/checkout/plan_HkGp4mEaRuiCW?d2c=true"
+                                  : "https://whop.com/checkout/plan_ksiotkOaM27RH?d2c=true"
                               }
                               target="_blank"
                               rel="noopener noreferrer"
